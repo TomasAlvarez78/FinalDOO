@@ -1,0 +1,29 @@
+@startuml EstadoTurno
+(*) --> [crearTurno()] CreadoParcial
+--> [asignarHora()] Asignado
+If "Disponible" then
+	--> [Verdadero] "CreadoCompleto"
+	If "Cancelado()" then
+		--> [Verdadero] "Cancelado"
+		--> (*)
+	else
+		If "estadoTurno()" then 
+			--> [Verdadero] "Modificado"
+			--> [atendido()] EnCurso
+			--> [finalizado()] Finalizado
+			--> (*)
+		else
+			--> [atendido()] EnCurso
+		Endif
+	Endif
+	
+else
+		--> [Falso] "CreadoParcial"
+Endif
+@enduml
+
+//EnCurso
+//Modificado
+//Cancelado
+
+//

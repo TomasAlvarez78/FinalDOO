@@ -1,0 +1,36 @@
+@startuml RegistrarTurno
+    actor EncargadoRecepcion
+    boundary InterfazRegistro
+    control ControladorCliente
+    participant Cliente
+    participant Agenda
+    EncargadoRecepcion -> InterfazRegistro: 1.opcionBuscarUser()
+    activate InterfazRegistro
+    InterfazRegistro -> ControladorCliente: 2.buscarUser(nom: String)
+    activate ControladorCliente
+    ControladorCliente -> ControladorCliente: 3.consultarUser(nom: String)
+    ControladorCliente -> Cliente: 4.mostrarUser(nom: String)
+    activate Cliente
+    Cliente --> ControladorCliente: 5.cliente:Cliente
+    destroy Cliente
+    ControladorCliente --> InterfazRegistro: 6.cliente:Cliente
+    EncargadoRecepcion -> InterfazRegistro: 7.tomarFecha()
+    EncargadoRecepcion -> InterfazRegistro: 8.tomarHora()
+    EncargadoRecepcion -> InterfazRegistro: 9.tomarProblema()
+    EncargadoRecepcion -> InterfazRegistro: 10.opcionDisponibilidad()
+    InterfazRegistro -> ControladorCliente: 11.opcionDisponibilidad(Fecha : date, Hora: int)
+    ControladorCliente -> ControladorCliente: 12.consultarAgenda()
+    ControladorCliente -> Agenda: 13. mostrarAgenda()
+    activate Agenda
+    Agenda --> ControladorCliente: 14.list: Agenda
+    
+    ControladorCliente -> InterfazRegistro: 15.list: Agenda
+    EncargadoRecepcion -> InterfazRegistro: 16. opcionRegistarTurno()
+    InterfazRegistro -> ControladorCliente: 17. registrarTurno()
+    ControladorCliente -> Agenda: 18. registrarTurno()
+    Agenda -> ControladorCliente: 19. confirmarTurno()
+    destroy Agenda
+    ControladorCliente -> InterfazRegistro: 20. generarTicket()
+'/
+
+@enduml

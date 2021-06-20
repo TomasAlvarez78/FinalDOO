@@ -1,0 +1,24 @@
+@startuml RegistrarEntrega
+    actor EncargadoRecepcion
+    boundary InterfazVehiculo
+    control ControladorVehiculo
+    participant FichaMecanica
+    participant Agenda
+    EncargadoRecepcion -> InterfazVehiculo: 1. opcionVerificarTurno()
+    InterfazVehiculo -> ControladorVehiculo: 2. opcionVerificarTurno(Fecha:date,Hora:int)
+    ControladorVehiculo -> ControladorVehiculo: 3. consultarTurno(Fecha:date,Hora:int)
+    ControladorVehiculo -> Agenda: 4. mostrarTurno(Fecha:date,Hora:int)
+    activate Agenda
+    Agenda --> ControladorVehiculo: 5. turno:Turno
+    destroy Agenda
+    ControladorVehiculo -> InterfazVehiculo: 6. turno:Turno
+    EncargadoRecepcion->InterfazVehiculo: 7. opcionGenerarFicha()
+    InterfazVehiculo->ControladorVehiculo: 8. opcionGenerarFicha()
+    ControladorVehiculo->FichaMecanica: 9. generarFicha()
+    activate FichaMecanica
+    FichaMecanica-->ControladorVehiculo: 10. fichaMecanica:FichaMecanica
+    destroy FichaMecanica
+    ControladorVehiculo->InterfazVehiculo: 11. fichaMecanica:FichaMecanica
+'/
+
+@enduml
