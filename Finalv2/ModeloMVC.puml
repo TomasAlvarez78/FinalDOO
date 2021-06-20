@@ -1,0 +1,117 @@
+@startuml ModeloMVC
+
+hide empty attributes
+
+package "Main"{
+	'Main's
+	class AplicacionMVC
+	class GestorPersona
+}
+
+'Controladores
+package "Controlador"{
+	abstract class Controlador
+	class ControladorImplHome
+	class ControladorImplRegistroTurno
+
+}
+
+
+
+package "Vista"{
+	'Vistas
+	class PrototipoHome1
+	class vistaTurno
+	interface InterfazVista	
+}
+
+
+package "Modelo"{
+	'Modelos
+	class Modelo
+	package "Factory Method Persona"{
+		abstract class Persona{
+			+ getNombre()
+		}
+
+		abstract class Empleado{
+			+ atender()
+		}
+		
+		abstract class PersonaFactoryMethod{
+			+ crearPersona( id )
+		}
+
+		' Implementacion
+		' 1 - Cliente
+		' 2 - Empleado
+		' 3 - Mecanico
+		class PersonaFactory{
+			+ crearPersona ( id )
+		}
+		class Cliente{
+			+ quejarse()
+		}
+		class Mecanico{
+			+ arreglar()
+		}
+		class Oficinista{
+			+ llamar()
+		}
+		PersonaFactory --|> PersonaFactoryMethod
+		PersonaFactory ..> Cliente : <<instancia>>
+		PersonaFactory ..> Mecanico : <<instancia>>
+		PersonaFactory ..> Oficinista : <<instancia>>
+		Cliente --|> Persona
+		Empleado -left-|> Persona
+
+		Mecanico --|> Empleado
+		Oficinista --|> Empleado
+	}
+
+	package "DAO" <<Database>>{
+
+		package "FabricaDAO"{
+			interface EmpleadoDAO
+			interface ClienteDAO
+
+			abstract class FabricaDAO
+
+			class ClienteDAOImpl
+			class EmpleadoDAOImpl
+			class ConexionSQLite
+			class SqlFabricaDAO
+
+		}
+
+		EmpleadoDAOImpl -down-> ConexionSQLite 
+		ClienteDAOImpl -down-> ConexionSQLite
+		EmpleadoDAOImpl ..|> EmpleadoDAO
+		ClienteDAOImpl ..|> ClienteDAO
+		SqlFabricaDAO -up-|> FabricaDAO
+		SqlFabricaDAO ..> EmpleadoDAOImpl
+		SqlFabricaDAO ..> ClienteDAOImpl
+
+
+	}
+}
+
+
+
+GestorPersona ..> FabricaDAO
+GestorPersona.. Empleado
+GestorPersona .. Cliente
+GestorPersona ..> ClienteDAO
+GestorPersona ..> EmpleadoDAO
+
+'Relaciones
+Controlador <|-- ControladorImplHome
+Controlador <|-- ControladorImplRegistroTurno
+Controlador ..> Modelo : <<manipula>>
+Controlador ..> InterfazVista : <<actualiza>>
+AplicacionMVC .left.> Controlador : <<usa>>
+PrototipoHome1 ..|> InterfazVista
+vistaTurno ..|> InterfazVista
+InterfazVista ..> Controlador
+
+@enduml

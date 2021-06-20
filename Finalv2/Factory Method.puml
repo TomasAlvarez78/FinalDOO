@@ -1,0 +1,40 @@
+@startuml Factory Method
+	abstract class Persona{
+		+ getNombre()
+	}
+
+	abstract class Empleado{
+		+ atender()
+	}
+	
+	abstract class PersonaFactoryMethod{
+		+ crearPersona( id )
+	}
+
+	' Implementacion
+	' 1 - Cliente
+	' 2 - Empleado
+	' 3 - Mecanico
+	class PersonaFactory{
+		+ crearPersona ( id )
+	}
+	class Cliente{
+		+ quejarse()
+	}
+	class Mecanico{
+		+ arreglar()
+	}
+	class Oficinista{
+		+ llamar()
+	}
+	PersonaFactory --|> PersonaFactoryMethod
+	PersonaFactory ..> Cliente : <<instancia>>
+	PersonaFactory ..> Mecanico : <<instancia>>
+	PersonaFactory ..> Oficinista : <<instancia>>
+	Cliente --|> Persona
+	Empleado -left-|> Persona
+
+	Mecanico --|> Empleado
+	Oficinista --|> Empleado
+
+@enduml
