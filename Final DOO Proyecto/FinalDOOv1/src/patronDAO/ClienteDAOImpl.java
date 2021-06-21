@@ -133,5 +133,54 @@ public class ClienteDAOImpl implements ClienteDAO{
     public void cerrarConexion() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Cliente buscarClientePorTicket(int ticketId) {
+        Connection con = null;
+        PreparedStatement sentencia = null;
+        ResultSet rs = null;
+        Cliente cliente = null;
+        
+        try{
+            con = conexion.getConnection();
+            String sql = "select dni, nombre, apellido,sexo, fechaNacimiento, auto,companiaSeguroCuit from turnoTable tt join clienteTable ct on tt.clienteId = ct.id where tt.id = ?";
+           
+            sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, ticketId);
+            
+            rs = sentencia.executeQuery();
+            
+            int dniCli;
+            String nombre;
+            String apellido;
+            Date fechaNacimiento;
+            String sexo;
+            String auto;
+            int companiaSeguro;
+            
+            while (rs.next()) {
+                dniCli = rs.getInt("dni");
+                nombre = rs.getString("nombre");
+                apellido = rs.getString("apellido");
+                fechaNacimiento = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("fechaNacimiento"));
+                System.out.println(fechaNacimiento);
+                sexo = rs.getString("sexo");
+                auto = rs.getString("auto");
+                companiaSeguro = rs.getInt("companiaSeguroCuit");
+                cliente = new Cliente(dniCli,nombre, apellido, fechaNacimiento, sexo,auto,companiaSeguro);
+            }
+            
+        }catch (SQLException | ParseException e) {
+            System.err.println(e);
+        }finally{
+            try {
+                rs.close();
+                sentencia.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+        }
+        return cliente;
+    }
     
 }

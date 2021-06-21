@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import vista.InterfazVista;
 import modelo.Modelo;
 import modeloFactoryPersona.Cliente;
+import vista.VistaEntrega;
 import vista.VistaTurno;
 
 /**
@@ -30,10 +31,8 @@ public class ControladorImplHome extends Controlador{
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case REGISTRARTURNO:
                     vistaTurno = new VistaTurno();
-                    //crear nuevo modelo
-                    //crear nuevo controlador
-                    Controlador controladorImplRegistroTurno = new ControladorImplRegistroTurno(vistaTurno,this.MODELO);
-                    vistaTurno.setControlador(controladorImplRegistroTurno);
+                    Controlador controladorImplBuscarUsuario = new ControladorImplBuscarUsuario(vistaTurno,this.MODELO);
+                    vistaTurno.setControlador(controladorImplBuscarUsuario);
                     vistaTurno.iniciaVista();
                     
                     //Para evitar de abrir muchos vistaTurno
@@ -41,7 +40,10 @@ public class ControladorImplHome extends Controlador{
                     
                     break;
                 case REGISTRARENTREGA:
-                    
+                    vistaRegEntrega = new VistaEntrega();
+                    Controlador controladorImplRegistrarEntrega = new ControladorImplRegistrarEntregaBD(vistaRegEntrega,this.MODELO);
+                    vistaRegEntrega.setControlador(controladorImplRegistrarEntrega);
+                    vistaRegEntrega.iniciaVista();
                     break;
             }
         } catch (Exception ex) {

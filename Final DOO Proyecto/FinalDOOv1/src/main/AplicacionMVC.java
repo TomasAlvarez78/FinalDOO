@@ -9,7 +9,7 @@ import controlador.Controlador;
 import controlador.ControladorImplHome;
 import java.util.Calendar;
 import modelo.Modelo;
-import vista.PrototipoHome1;
+import vista.VistaHome;
 import vista.InterfazVista;
 
 /**
@@ -45,7 +45,7 @@ public class AplicacionMVC {
         Modelo modelo = new Modelo();
         
         //vista:
-        InterfazVista vista = new PrototipoHome1();
+        InterfazVista vista = new VistaHome();
         
         //controlador:
         Controlador control = new ControladorImplHome(vista, modelo);

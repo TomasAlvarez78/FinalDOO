@@ -13,20 +13,19 @@ import main.GestorGeneral;
 import modelo.Modelo;
 import modeloFactoryPersona.Cliente;
 import modeloFactoryPersona.Empleado;
-import modeloFactoryPersona.Mecanico;
 import vista.InterfazVista;
 
 /**
  *
  * @author cirkuit
  */
-public class ControladorImplRegistrarBD extends Controlador{
+public class ControladorImplRegistrarTurnoBD extends Controlador{
     
     private final GestorGeneral objeto;
     private List<Empleado> mecanicos;
     private Cliente cliente;
     
-    public ControladorImplRegistrarBD(InterfazVista vista, Modelo modelo) {
+    public ControladorImplRegistrarTurnoBD(InterfazVista vista, Modelo modelo) {
         vistaRegTurno = vista;
         MODELO = modelo;
         objeto = new GestorGeneral();
@@ -41,7 +40,6 @@ public class ControladorImplRegistrarBD extends Controlador{
         try {
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case CARGAR:
-                    System.out.println("Hola");
                     mecanicos = objeto.buscarEmpleadosMecanicos();
                     vistaRegTurno.cargarMecanicos(mecanicos);
                     break;

@@ -17,11 +17,11 @@ import vista.VistaRegistroTurnoBD;
  *
  * @author cirkuit
  */
-public class ControladorImplRegistroTurno extends Controlador {
+public class ControladorImplBuscarUsuario extends Controlador {
     
     private Cliente cliente;
     
-    public ControladorImplRegistroTurno(InterfazVista vista, Modelo modelo) {
+    public ControladorImplBuscarUsuario(InterfazVista vista, Modelo modelo) {
         vistaTurno = vista;
         MODELO = modelo;
     }
@@ -29,7 +29,6 @@ public class ControladorImplRegistroTurno extends Controlador {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Se apreto un boton");
         try {
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case BUSCARUSUARIO:
@@ -41,9 +40,8 @@ public class ControladorImplRegistroTurno extends Controlador {
                     
                     break;
                 case SIGUIENTE:
-                    System.out.println("Se apreto un boton2");
                     vistaRegTurno = new VistaRegistroTurnoBD();
-                    Controlador controladorImplRegistrarBD = new ControladorImplRegistrarBD(vistaRegTurno,this.MODELO);
+                    Controlador controladorImplRegistrarBD = new ControladorImplRegistrarTurnoBD(vistaRegTurno,this.MODELO);
                     controladorImplRegistrarBD.setCliente(cliente);
                     vistaRegTurno.setControlador(controladorImplRegistrarBD);
                     vistaRegTurno.iniciaVista();

@@ -15,12 +15,13 @@ import modeloFactoryPersona.Empleado;
  */
 public interface InterfazVista {
     public static enum Operacion {
-        REGISTRARTURNO,REGISTRARTURNOBD,REGISTRARENTREGA,BUSCARUSUARIO,SIGUIENTE,CARGAR;
+        REGISTRARTURNO,REGISTRARTURNOBD,REGISTRARENTREGA,BUSCARUSUARIO,SIGUIENTE,CARGAR,BUSCARTURNO;
     };
 
     void setControlador(Controlador c);
     void iniciaVista();
     String getDate();
+    String getTicket();
     int getDNI();
     void imprimeResultado(String resultado);
     void imprimeError(Exception e);

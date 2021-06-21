@@ -10,12 +10,12 @@ import java.util.List;
 import modeloFactoryPersona.Cliente;
 import modeloFactoryPersona.Empleado;
         
-public class PrototipoHome1 extends javax.swing.JFrame implements InterfazVista {
+public class VistaHome extends javax.swing.JFrame implements InterfazVista {
 
     /**
      * Creates new form PrototipoHome1
      */
-    public PrototipoHome1() {
+    public VistaHome() {
         initComponents();
     }
 
@@ -131,6 +131,11 @@ public class PrototipoHome1 extends javax.swing.JFrame implements InterfazVista 
 
     @Override
     public int getMecanicoId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getTicket() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

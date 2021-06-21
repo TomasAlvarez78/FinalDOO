@@ -123,5 +123,35 @@ public class TurnoDAOImpl implements TurnoDAO{
         return false;
         
     }
+
+    @Override
+    public boolean cambiarEstado(int ticketId, int estadoId) {
+        Connection con = null;
+        PreparedStatement sentencia = null;
+        
+        try{
+            con = conexion.getConnection();
+            
+            String sql = "UPDATE turnoTable SET estadoId = ? WHERE id = ?";
+            
+            sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, estadoId);
+            sentencia.setInt(2,ticketId);
+
+            int resultado = sentencia.executeUpdate();
+            
+            return (resultado > 0);
+            
+        }catch (SQLException e) {
+            System.err.println(e);
+        }finally{
+            try {
+                sentencia.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+        }
+        return false;
+    }
     
 }

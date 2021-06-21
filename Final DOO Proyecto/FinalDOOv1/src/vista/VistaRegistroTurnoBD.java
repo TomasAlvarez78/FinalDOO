@@ -8,6 +8,7 @@ package vista;
 import controlador.Controlador;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import modeloFactoryPersona.Cliente;
 import modeloFactoryPersona.Empleado;
 
@@ -145,7 +146,7 @@ public class VistaRegistroTurnoBD extends javax.swing.JFrame implements Interfaz
 
     @Override
     public void imprimeError(Exception e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         JOptionPane.showMessageDialog(this, "Ocurrio una excepción: " + e.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override
@@ -167,6 +168,11 @@ public class VistaRegistroTurnoBD extends javax.swing.JFrame implements Interfaz
         }catch(NumberFormatException ex){
             return -1;
         }
+    }
+
+    @Override
+    public String getTicket() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

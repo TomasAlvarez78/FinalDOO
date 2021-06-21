@@ -15,6 +15,7 @@ import modeloFactoryPersona.Cliente;
  */
 public interface ClienteDAO {
     Cliente buscarCliente(int dni);
+    Cliente buscarClientePorTicket(int ticketId);
     Cliente buscarCliente(String nombre,String apellido);
     
     List<Cliente> listarClientes();

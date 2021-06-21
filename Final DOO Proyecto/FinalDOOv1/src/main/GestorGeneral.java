@@ -33,10 +33,8 @@ public class GestorGeneral {
     public Empleado buscarEmpleado(int dni){
         Empleado empleado = empleadoDao.buscarEmpleado(dni);
         if (empleado != null) {
-            System.out.println("Encontrado: " + empleado.getNombre() + " " + empleado.getApellido() + " (leg=" + empleado.getDni() + ")");
             return empleado;
         }
-        System.err.println("No encontrado");
         return null;
     }
     
@@ -57,30 +55,40 @@ public class GestorGeneral {
     public Cliente buscarCliente(int dni){
         Cliente cliente = clienteDao.buscarCliente(dni);
         if (cliente != null) {
-            System.out.println("Encontrado: " + cliente.getNombre() + " " + cliente.getApellido() + " (leg=" + cliente.getDni() + ")");
             return cliente;
         }
-        System.err.println("No encontrado");
+        return null;
+    }
+    
+    public Cliente buscarClientePorTicket(int ticketId){
+        Cliente cliente = clienteDao.buscarClientePorTicket(ticketId);
+        if (cliente != null) {
+            return cliente;
+        }
         return null;
     }
     
     public boolean verificarExistenciaTurno(Date fecha, Empleado mecanico){
         boolean estado = turnoDAO.verificarExistenciaTurno(fecha, mecanico);
         if(estado){
-            System.out.println("El turno ya existe, no puede ser tomado");
             return true;
         }
-        System.out.println("El turno no existe");
         return false;
     }
     
     public boolean agendarTurno(Date fecha,int mecanicoId,Cliente cliente){
         boolean estado = turnoDAO.asignarTurno(fecha, mecanicoId, cliente, 3, 0);
         if(estado){
-            System.out.println("El turno fue agendado");
             return true;
         }
-        System.out.println("El turno no pudo ser agendado");
+        return false;
+    }
+    
+    public boolean cambiarEstado(int ticketId,int estadoId){
+        boolean estado = turnoDAO.cambiarEstado(ticketId,estadoId);
+        if(estado){
+            return true;
+        }
         return false;
     }
     
