@@ -5,6 +5,9 @@
  */
 package modeloFactoryPersona;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -35,10 +38,13 @@ public abstract class Persona {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    public String getNombreCompleto() {
+        return this.nombre + " " + this.apellido;
+    }
 
     public String getApellido() {
-        return apellido;
+        return this.apellido;
     }
     
     public void setApellido(String apellido) {
@@ -53,16 +59,31 @@ public abstract class Persona {
         this.dni = dni;
     }
       public String getSexo() {
-        return sexo;
+        return this.sexo;
     }
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-
     
     public Date getFechaNacimiento() {
         return fechaNacimiento;
+    }
+    
+    public int getEdad(){
+        Calendar c = Calendar.getInstance();
+        c.setTime(this.fechaNacimiento);
+        
+        int anio = c.get(Calendar.YEAR);
+        int mes = c.get(Calendar.MONTH) + 1;
+        int fecha = c.get(Calendar.DATE);
+        
+        LocalDate fecha1 = LocalDate.of(anio, mes, fecha);
+        LocalDate ahora = LocalDate.now();
+        Period diff1 = Period.between(fecha1, ahora);
+        System.out.println("Edad: " + diff1.getYears() + " anios");
+        
+        return diff1.getYears();
     }
 
     public void setFechaNacimiento(Date fechaNacimiento) {

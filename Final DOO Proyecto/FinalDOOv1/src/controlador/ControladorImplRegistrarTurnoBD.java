@@ -48,9 +48,12 @@ public class ControladorImplRegistrarTurnoBD extends Controlador{
                     Empleado mecanico = mecanicos.get(mecanicoId);
                     mecanicoId++;
                     System.out.println(mecanicoId);
-                    boolean estado = objeto.verificarExistenciaTurno(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(vistaRegTurno.getDate()),mecanico);
-                    if(!estado){
-                        objeto.agendarTurno(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(vistaRegTurno.getDate()),mecanicoId,cliente);
+                    boolean estado = objeto.verificarExistenciaTurno(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(vistaRegTurno.getDate()),mecanico);
+                    if(estado){
+                        objeto.agendarTurno(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(vistaRegTurno.getDate()),mecanicoId,cliente);
+                        vistaRegTurno.imprimeResultado("Se registro el turno correctamente");
+                    }else{
+                        vistaRegTurno.imprimeResultado("El turno ya existe");
                     }
                     break;
             }

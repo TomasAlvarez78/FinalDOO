@@ -71,25 +71,31 @@ package "Modelo"{
 
 	package "DAO" <<Database>>{
 
+		
 		package "FabricaDAO"{
 			interface EmpleadoDAO
 			interface ClienteDAO
+			interface TurnoDAO
 
 			abstract class FabricaDAO
 
 			class ClienteDAOImpl
 			class EmpleadoDAOImpl
+			class TurnoDAOImpl
 			class ConexionSQLite
 			class SqlFabricaDAO
 
 		}
 
-		EmpleadoDAOImpl -down-> ConexionSQLite 
-		ClienteDAOImpl -down-> ConexionSQLite
+		EmpleadoDAOImpl -up-> ConexionSQLite 
+		ClienteDAOImpl -up-> ConexionSQLite
+		TurnoDAOImpl -up-> ConexionSQLite 
 		EmpleadoDAOImpl ..|> EmpleadoDAO
 		ClienteDAOImpl ..|> ClienteDAO
+		TurnoDAOImpl ..|> TurnoDAO
 		SqlFabricaDAO -up-|> FabricaDAO
 		SqlFabricaDAO ..> EmpleadoDAOImpl
+		SqlFabricaDAO ..> TurnoDAOImpl
 		SqlFabricaDAO ..> ClienteDAOImpl
 
 
@@ -103,6 +109,7 @@ GestorPersona.. Empleado
 GestorPersona .. Cliente
 GestorPersona ..> ClienteDAO
 GestorPersona ..> EmpleadoDAO
+GestorPersona ..> TurnoDAO
 
 'Relaciones
 Controlador <|-- ControladorImplHome

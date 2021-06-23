@@ -39,7 +39,7 @@ public class TurnoDAOImpl implements TurnoDAO{
             String sql = "SELECT * FROM turnoTable tt join agendaTable at on tt.agendaId = at.id join empleadoTable et on at.mecanicoId = et.id where et.dni = ? and tt.fecha = ?";
             sentencia = con.prepareStatement(sql);
             sentencia.setInt(1,mecanico.getDni());
-            sentencia.setString(2,new SimpleDateFormat("yyyy-MM-dd hh:mm").format(fecha));
+            sentencia.setString(2,new SimpleDateFormat("yyyy-MM-dd HH:mm").format(fecha));
 
             rs = sentencia.executeQuery();
             
@@ -82,8 +82,6 @@ public class TurnoDAOImpl implements TurnoDAO{
             rs = sentencia.executeQuery();
             int agendaId = rs.getInt("id");
             
-            System.out.println("Escribi 1");
-            
             //Hago un query para conseguir le id del cliente segun el DNI
             String sql2 = "SELECT * FROM clienteTable where dni = ?";
 
@@ -92,12 +90,11 @@ public class TurnoDAOImpl implements TurnoDAO{
             rs2 = sentencia2.executeQuery();
             int clienteId = rs2.getInt("id");
             
-            System.out.println("Escribi 2 ");
 
             //Agrego un nuevo turno
             String sql3 = "INSERT INTO turnoTable (fecha,agendaId,clienteId,vehiculo,estadoId,telefonico) VALUES (?,?,?,?,?,?)";
             sentencia3 = con.prepareStatement(sql3);
-            sentencia3.setString(1,new SimpleDateFormat("yyyy-MM-dd hh:mm").format(fecha));
+            sentencia3.setString(1,new SimpleDateFormat("yyyy-MM-dd HH:mm").format(fecha));
             sentencia3.setInt(2,agendaId);
             sentencia3.setInt(3,clienteId);
             sentencia3.setString(4,cliente.getAuto());
@@ -105,8 +102,6 @@ public class TurnoDAOImpl implements TurnoDAO{
             sentencia3.setInt(6,telefonico);
             
             int resultado = sentencia3.executeUpdate();
-            
-            System.out.println("Escribi 3 ");
             
             return (resultado > 0);
             

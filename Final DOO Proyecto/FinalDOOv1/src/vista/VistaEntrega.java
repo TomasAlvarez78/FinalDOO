@@ -42,7 +42,8 @@ public class VistaEntrega extends javax.swing.JFrame implements InterfazVista{
         btnBuscarTurno = new javax.swing.JButton();
         btnRegEntrega = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Registrar Entrega");
         setResizable(false);
 
         jLabel1.setText("N de Ticket:");

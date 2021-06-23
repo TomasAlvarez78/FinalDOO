@@ -76,12 +76,11 @@ public class VistaTurno extends javax.swing.JFrame implements InterfazVista{
             .addGap(0, 386, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Verificar Cliente");
         setResizable(false);
 
         jLabel1.setText("Nombre:");
-
-        txtDni.setText(" ");
 
         jLabel2.setText("DNI:");
 
@@ -196,7 +195,7 @@ public class VistaTurno extends javax.swing.JFrame implements InterfazVista{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -272,7 +271,7 @@ public class VistaTurno extends javax.swing.JFrame implements InterfazVista{
     @Override
     public int getDNI() {
         try{
-            return Integer.parseInt(this.txtDni.getText());
+            return Integer.parseInt(this.txtDni.getText().trim());
         }catch(NumberFormatException ex){
             return 0;
         }

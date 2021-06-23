@@ -41,7 +41,8 @@ public class VistaRegistroTurnoBD extends javax.swing.JFrame implements Interfaz
         txtFecha = new javax.swing.JTextField();
         btnTurnoReg = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Registrar Turno");
         setResizable(false);
 
         jLabel1.setText("Mecanico:");
@@ -141,7 +142,7 @@ public class VistaRegistroTurnoBD extends javax.swing.JFrame implements Interfaz
 
     @Override
     public void imprimeResultado(String resultado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showMessageDialog(this,resultado, "Información", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override

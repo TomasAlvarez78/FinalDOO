@@ -20,11 +20,11 @@ public class GestorGeneral {
     
     private final FabricaDAO fabricaDao = FabricaDAO.getFactory("SqlFabricaDAO");
 
-    private final EmpleadoDAO empleadoDao= fabricaDao.getEmpleadoDao();
+    private final EmpleadoDAO empleadoDao = fabricaDao.getEmpleadoDao();
     
-    private final ClienteDAO clienteDao= fabricaDao.getClienteDao();
+    private final ClienteDAO clienteDao = fabricaDao.getClienteDao();
     
-    private final TurnoDAO turnoDAO= fabricaDao.getTurnoDao();
+    private final TurnoDAO turnoDao = fabricaDao.getTurnoDao();
     
     public boolean agregarEmpleado(int dni,String nombre,String apellido, String sexo, Date fechaNacimiento,int especialidad,String turno,int tipo){
         return empleadoDao.agregarEmpleado(dni, nombre, apellido, sexo, fechaNacimiento, especialidad, turno, tipo);
@@ -69,7 +69,7 @@ public class GestorGeneral {
     }
     
     public boolean verificarExistenciaTurno(Date fecha, Empleado mecanico){
-        boolean estado = turnoDAO.verificarExistenciaTurno(fecha, mecanico);
+        boolean estado = turnoDao.verificarExistenciaTurno(fecha, mecanico);
         if(estado){
             return true;
         }
@@ -77,7 +77,7 @@ public class GestorGeneral {
     }
     
     public boolean agendarTurno(Date fecha,int mecanicoId,Cliente cliente){
-        boolean estado = turnoDAO.asignarTurno(fecha, mecanicoId, cliente, 3, 0);
+        boolean estado = turnoDao.asignarTurno(fecha, mecanicoId, cliente, 3, 0);
         if(estado){
             return true;
         }
@@ -85,7 +85,7 @@ public class GestorGeneral {
     }
     
     public boolean cambiarEstado(int ticketId,int estadoId){
-        boolean estado = turnoDAO.cambiarEstado(ticketId,estadoId);
+        boolean estado = turnoDao.cambiarEstado(ticketId,estadoId);
         if(estado){
             return true;
         }
