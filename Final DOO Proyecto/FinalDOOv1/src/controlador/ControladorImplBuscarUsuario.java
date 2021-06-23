@@ -11,6 +11,7 @@ import main.GestorGeneral;
 import modelo.Modelo;
 import modeloFactoryPersona.Cliente;
 import vista.InterfazVista;
+import vista.VistaRegistroCliente;
 import vista.VistaRegistroTurno;
 
 /**
@@ -45,6 +46,14 @@ public class ControladorImplBuscarUsuario extends Controlador {
                     controladorImplRegistrarBD.setCliente(cliente);
                     vistaRegTurno.setControlador(controladorImplRegistrarBD);
                     vistaRegTurno.iniciaVista();
+                    break;
+                case REGISTRARCLIENTE:
+                    vistaRegCliente = new VistaRegistroCliente();
+                    Controlador controladorImplRegistrarCliente = new ControladorImplRegistrarCliente(vistaRegCliente,this.MODELO);
+                    vistaRegCliente.setControlador(controladorImplRegistrarCliente);
+                    vistaRegCliente.iniciaVista();
+                    break;
+                            
             }
         } catch (Exception ex) {
             vistaTurno.imprimeError(ex);

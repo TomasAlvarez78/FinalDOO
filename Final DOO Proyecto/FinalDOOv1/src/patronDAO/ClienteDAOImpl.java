@@ -55,7 +55,6 @@ public class ClienteDAOImpl implements ClienteDAO{
                 nombre = rs.getString("nombre");
                 apellido = rs.getString("apellido");
                 fechaNacimiento = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("fechaNacimiento"));
-                System.out.println(fechaNacimiento);
                 sexo = rs.getString("sexo");
                 auto = rs.getString("auto");
                 companiaSeguro = rs.getInt("companiaSeguroCuit");

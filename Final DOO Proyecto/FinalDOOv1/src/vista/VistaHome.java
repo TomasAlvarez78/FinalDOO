@@ -107,6 +107,11 @@ public class VistaHome extends javax.swing.JFrame implements InterfazVista {
     }
 
     @Override
+    public void cargarSeguros(List<String> lista) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
     public String getDate() {
         throw new UnsupportedOperationException("No soportado"); //To change body of generated methods, choose Tools | Templates.
     }
@@ -139,6 +144,18 @@ public class VistaHome extends javax.swing.JFrame implements InterfazVista {
     public String getTicket() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void cerrarVista() {
+        this.setVisible(false);
+        this.dispose();
+    }
+
+    @Override
+    public Cliente getCliente() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     
     

@@ -24,4 +24,9 @@ public class SqlFabricaDAO extends FabricaDAO{
     public TurnoDAO getTurnoDao() {
         return new TurnoDAOImpl();
     }
+    
+    @Override
+    public SegurosDAO getSeguroDao() {
+        return new SegurosDAOImpl();
+    }
 }

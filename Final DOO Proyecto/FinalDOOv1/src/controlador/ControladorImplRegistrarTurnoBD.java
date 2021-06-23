@@ -8,6 +8,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import main.GestorGeneral;
 import modelo.Modelo;
@@ -47,15 +48,17 @@ public class ControladorImplRegistrarTurnoBD extends Controlador{
                     int mecanicoId = vistaRegTurno.getMecanicoId();
                     Empleado mecanico = mecanicos.get(mecanicoId);
                     mecanicoId++;
-                    System.out.println(mecanicoId);
-                    boolean estado = objeto.verificarExistenciaTurno(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(vistaRegTurno.getDate()),mecanico);
-                    if(estado){
+                                               
+                    boolean existe = objeto.verificarExistenciaTurno(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(vistaRegTurno.getDate()),mecanico);
+                    
+                    if(!existe){
                         objeto.agendarTurno(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(vistaRegTurno.getDate()),mecanicoId,cliente);
                         vistaRegTurno.imprimeResultado("Se registro el turno correctamente");
                     }else{
                         vistaRegTurno.imprimeResultado("El turno ya existe");
                     }
                     break;
+
             }
         } catch (Exception ex) {
             vistaRegTurno.imprimeError(ex);

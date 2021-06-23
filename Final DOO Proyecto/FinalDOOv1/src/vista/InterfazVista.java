@@ -15,19 +15,24 @@ import modeloFactoryPersona.Empleado;
  */
 public interface InterfazVista {
     public static enum Operacion {
-        REGISTRARTURNO,REGISTRARTURNOBD,REGISTRARENTREGA,BUSCARUSUARIO,SIGUIENTE,CARGAR,BUSCARTURNO;
+        REGISTRARTURNO,REGISTRARTURNOBD,REGISTRARENTREGA,BUSCARUSUARIO,SIGUIENTE,CARGAR,BUSCARTURNO,CANCELAR,REGISTRARCLIENTE,REGISTRARCLIENTEBD;
     };
 
     void setControlador(Controlador c);
     void iniciaVista();
+    void cerrarVista();
+    
+    int getMecanicoId();
+    int getDNI();
     String getDate();
     String getTicket();
-    int getDNI();
+    
+    Cliente getCliente();
     void imprimeResultado(String resultado);
     void imprimeError(Exception e);
     void updateDatos(Cliente c);
     void cargarMecanicos(List <Empleado> lista);
-    int getMecanicoId();
+    void cargarSeguros(List <String> lista);
     
 
 

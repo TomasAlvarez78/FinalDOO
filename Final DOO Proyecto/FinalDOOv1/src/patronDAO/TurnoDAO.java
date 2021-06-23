@@ -17,4 +17,5 @@ public interface TurnoDAO {
     boolean verificarExistenciaTurno(Date fecha, Empleado mecanico); 
     boolean asignarTurno(Date fecha,int mecanicoId,Cliente cliente, int estadoId,int telefonico);
     boolean cambiarEstado(int ticketId,int estadoId);
+    
 }

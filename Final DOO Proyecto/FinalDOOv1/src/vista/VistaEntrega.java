@@ -191,6 +191,11 @@ public class VistaEntrega extends javax.swing.JFrame implements InterfazVista{
     public void cargarMecanicos(List<Empleado> lista) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override
+    public void cargarSeguros(List<String> lista) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public int getMecanicoId() {
@@ -216,4 +221,16 @@ public class VistaEntrega extends javax.swing.JFrame implements InterfazVista{
             return "";
         }
     }
+
+    @Override
+    public void cerrarVista() {
+        this.setVisible(false);
+        this.dispose();
+    }
+
+    @Override
+    public Cliente getCliente() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

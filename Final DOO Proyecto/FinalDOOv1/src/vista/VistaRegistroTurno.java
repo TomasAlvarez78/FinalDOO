@@ -170,10 +170,27 @@ public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVi
             return -1;
         }
     }
-
+        
+    @Override
+    public void cargarSeguros(List<String> lista) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public String getTicket() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void cerrarVista() {
+        this.setVisible(false);
+        this.dispose();
+    }
+
+    @Override
+    public Cliente getCliente() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }

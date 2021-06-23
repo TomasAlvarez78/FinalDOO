@@ -40,11 +40,12 @@ public class TurnoDAOImpl implements TurnoDAO{
             sentencia = con.prepareStatement(sql);
             sentencia.setInt(1,mecanico.getDni());
             sentencia.setString(2,new SimpleDateFormat("yyyy-MM-dd HH:mm").format(fecha));
-
             rs = sentencia.executeQuery();
-            
-            return (rs == null);
-            
+            if(rs.next() == false){
+                return false;
+            }else{
+                return true;
+            }
         }catch (SQLException e) {
             System.err.println(e);
         }finally{

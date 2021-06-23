@@ -132,7 +132,7 @@ package Empresa{
     Persona "1" --> "1-n" Turno
     Persona --> "1-n" Direccion
     Persona --> "1-n" Telefono
-
+    
     Vehiculo "1 "-- "1" Poliza
     Poliza "1 "-->"1 " CompaniaSeguros
     

@@ -13,6 +13,7 @@ import modeloFactoryPersona.Mecanico;
 import patronDAO.ClienteDAO;
 import patronDAO.EmpleadoDAO;
 import patronDAO.FabricaDAO;
+import patronDAO.SegurosDAO;
 import patronDAO.TurnoDAO;
 
 
@@ -25,6 +26,8 @@ public class GestorGeneral {
     private final ClienteDAO clienteDao = fabricaDao.getClienteDao();
     
     private final TurnoDAO turnoDao = fabricaDao.getTurnoDao();
+    
+    private final SegurosDAO seguroDao = fabricaDao.getSeguroDao();
     
     public boolean agregarEmpleado(int dni,String nombre,String apellido, String sexo, Date fechaNacimiento,int especialidad,String turno,int tipo){
         return empleadoDao.agregarEmpleado(dni, nombre, apellido, sexo, fechaNacimiento, especialidad, turno, tipo);
@@ -48,8 +51,32 @@ public class GestorGeneral {
         
     }
     
+    public List<String> listarSeguros(){
+        List<String> lista = seguroDao.getSeguros();
+        if(lista != null){
+            return lista;
+        }
+        System.err.println("No hay seguros");
+        return null;
+        
+    }
+    
+    
+    
     public boolean agregarCliente(int dni,String nombre,String apellido, String sexo, Date fechaNacimiento,String auto,int companiaSeguro){
         return clienteDao.agregarCliente(dni, nombre, apellido, sexo, fechaNacimiento, auto, companiaSeguro);
+    }
+    
+    public boolean agregarCliente(Cliente cliente){
+        return clienteDao.agregarCliente(cliente.getDni(), cliente.getNombre(), cliente.getApellido(), cliente.getSexo(), cliente.getFechaNacimiento(), cliente.getAuto(), cliente.getCompaniaSeguro());
+    }
+    
+    public boolean verificarCliente(int dni){
+        Cliente cliente = clienteDao.buscarCliente(dni);
+        if (cliente != null) {
+            return true;
+        }
+        return false;
     }
     
     public Cliente buscarCliente(int dni){
@@ -91,5 +118,6 @@ public class GestorGeneral {
         }
         return false;
     }
+    
     
 }
