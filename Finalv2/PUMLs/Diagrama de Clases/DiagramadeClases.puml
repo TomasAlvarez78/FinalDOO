@@ -117,7 +117,7 @@ package Empresa{
         -cliente: Cliente
         -descripcion: string
         -dia: date
-        -tiempoDemorado:int
+        -tiempoEmpleado:int
         -conformidad: bool
         
     }
