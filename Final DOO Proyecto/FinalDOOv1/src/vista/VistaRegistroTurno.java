@@ -16,12 +16,12 @@ import modeloFactoryPersona.Empleado;
  *
  * @author cirkuit
  */
-public class VistaRegistroTurnoBD extends javax.swing.JFrame implements InterfazVista{
+public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVista{
 
     /**
      * Creates new form VistaRegistroTurnoBD
      */
-    public VistaRegistroTurnoBD() {
+    public VistaRegistroTurno() {
         initComponents();
     }
 

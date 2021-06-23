@@ -5,24 +5,27 @@ hide empty attributes
 package "Main"{
 	'Main's
 	class AplicacionMVC
-	class GestorPersona
+	class GestorGeneral
 }
 
 'Controladores
 package "Controlador"{
 	abstract class Controlador
 	class ControladorImplHome
-	class ControladorImplRegistroTurno
-
+	class ControladorImplBuscarUsuario
+	class ControladorImplRegistrarTurnoBD
+	class ControladorImplRegistrarEntregaBD
 }
 
 
 
 package "Vista"{
 	'Vistas
-	class PrototipoHome1
-	class vistaTurno
 	interface InterfazVista	
+	class VistaHome
+	class VistaTurno
+	class VistaRegistroTurno
+	class VistaEntrega
 }
 
 
@@ -104,21 +107,31 @@ package "Modelo"{
 
 
 
-GestorPersona ..> FabricaDAO
-GestorPersona.. Empleado
-GestorPersona .. Cliente
-GestorPersona ..> ClienteDAO
-GestorPersona ..> EmpleadoDAO
-GestorPersona ..> TurnoDAO
+GestorGeneral ..> FabricaDAO
+GestorGeneral.. Empleado
+GestorGeneral .. Cliente
+GestorGeneral ..> ClienteDAO
+GestorGeneral ..> EmpleadoDAO
+GestorGeneral ..> TurnoDAO
 
 'Relaciones
+'Controlador
 Controlador <|-- ControladorImplHome
-Controlador <|-- ControladorImplRegistroTurno
+Controlador <|-- ControladorImplBuscarUsuario
+Controlador <|-- ControladorImplRegistrarTurnoBD
+Controlador <|-- ControladorImplRegistrarEntregaBD
+
 Controlador ..> Modelo : <<manipula>>
 Controlador ..> InterfazVista : <<actualiza>>
+
+'Main
 AplicacionMVC .left.> Controlador : <<usa>>
-PrototipoHome1 ..|> InterfazVista
-vistaTurno ..|> InterfazVista
+
+'Interfaz
 InterfazVista ..> Controlador
+VistaHome ..|> InterfazVista
+VistaTurno ..|> InterfazVista
+VistaRegistroTurno ..|> InterfazVista
+VistaEntrega ..|> InterfazVista
 
 @enduml
