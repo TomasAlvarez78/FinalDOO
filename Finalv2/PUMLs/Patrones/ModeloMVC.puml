@@ -61,7 +61,7 @@ package "Modelo"{
 		class Oficinista{
 			+ llamar()
 		}
-		PersonaFactory --|> PersonaFactoryMethod
+		PersonaFactory -left-|> PersonaFactoryMethod
 		PersonaFactory ..> Cliente : <<instancia>>
 		PersonaFactory ..> Mecanico : <<instancia>>
 		PersonaFactory ..> Oficinista : <<instancia>>
@@ -107,7 +107,7 @@ package "Modelo"{
 
 
 
-GestorGeneral ..> FabricaDAO
+GestorGeneral ..> FabricaDAO : <<usa>>
 GestorGeneral.. Empleado
 GestorGeneral .. Cliente
 GestorGeneral ..> ClienteDAO
@@ -118,8 +118,12 @@ GestorGeneral ..> TurnoDAO
 'Controlador
 Controlador <|-- ControladorImplHome
 Controlador <|-- ControladorImplBuscarUsuario
-Controlador <|-- ControladorImplRegistrarTurnoBD
+Controlador <|-right- ControladorImplRegistrarTurnoBD
 Controlador <|-- ControladorImplRegistrarEntregaBD
+
+ControladorImplRegistrarEntregaBD ..> GestorGeneral : <<usa>>
+ControladorImplRegistrarTurnoBD ..> GestorGeneral : <<usa>>
+ControladorImplBuscarUsuario ..> GestorGeneral : <<usa>>
 
 Controlador ..> Modelo : <<manipula>>
 Controlador ..> InterfazVista : <<actualiza>>
