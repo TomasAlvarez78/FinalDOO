@@ -44,7 +44,7 @@ public class ControladorImplRegistrarCliente extends Controlador{
                     if(!existe){
                         boolean creado = objeto.agregarCliente(cliente);
                         if(creado){
-                            vistaRegCliente.imprimeResultado("Se ha aniadido el `cliente");
+                            vistaRegCliente.imprimeResultado("Se ha aniadido el cliente");
                         }else{
                             vistaRegCliente.imprimeResultado("No se pudo aniadir el cliente");
                         }

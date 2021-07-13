@@ -83,7 +83,7 @@ public class VistaRegistroCliente extends javax.swing.JFrame implements Interfaz
         txtDNI.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##.###"))));
 
         btnRegistrarCliente.setText("Registrar");
-        btnRegistrarCliente.setActionCommand(InterfazVista.Operacion.REGISTRARCLIENTE.toString());
+        btnRegistrarCliente.setActionCommand(InterfazVista.Operacion.REGISTRARCLIENTEBD.toString());
 
         btnCancelar.setText("Cancelar");
         btnCancelar.setActionCommand(InterfazVista.Operacion.CANCELAR.toString());
