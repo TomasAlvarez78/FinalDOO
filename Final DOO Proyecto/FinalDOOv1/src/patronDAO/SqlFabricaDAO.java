@@ -29,4 +29,9 @@ public class SqlFabricaDAO extends FabricaDAO{
     public SegurosDAO getSeguroDao() {
         return new SegurosDAOImpl();
     }
+
+    @Override
+    public FichaMecanicaDAO getFichaMecanicaDao() {
+        return new FichaMecanicaDAOImpl();
+    }
 }

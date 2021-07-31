@@ -34,16 +34,17 @@ public class ControladorImplHome extends Controlador{
                     Controlador controladorImplBuscarUsuario = new ControladorImplBuscarUsuario(vistaTurno,this.MODELO);
                     vistaTurno.setControlador(controladorImplBuscarUsuario);
                     vistaTurno.iniciaVista();
-                    
                     //Para evitar de abrir muchos vistaTurno
                     //vistaHome.setVisible();
-                    
                     break;
                 case REGISTRARENTREGA:
                     vistaRegEntrega = new VistaEntrega();
                     Controlador controladorImplRegistrarEntrega = new ControladorImplRegistrarEntregaBD(vistaRegEntrega,this.MODELO);
                     vistaRegEntrega.setControlador(controladorImplRegistrarEntrega);
                     vistaRegEntrega.iniciaVista();
+                    break;
+                case ACTUALIZARFICHAMECANICA:
+                    
                     break;
             }
         } catch (Exception ex) {

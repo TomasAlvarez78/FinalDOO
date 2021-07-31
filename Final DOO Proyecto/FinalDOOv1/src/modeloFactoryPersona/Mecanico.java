@@ -26,4 +26,11 @@ public class Mecanico extends Empleado{
     public String getTipo() {
         return "Soy un Mecanico";
     }
+
+    @Override
+    public int getEspecialidad() {
+        return especialidad;
+    }
+    
+    
 }

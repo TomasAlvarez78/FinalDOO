@@ -60,7 +60,7 @@ public class TurnoDAOImpl implements TurnoDAO{
     }
 
     @Override
-    public boolean asignarTurno(Date fecha,int mecanicoId, Cliente cliente, int estadoId, int telefonico) {
+    public boolean asignarTurno(Date fecha,int mecanicoDNI, Cliente cliente, int estadoId, int telefonico) {
         Connection con = null;
         PreparedStatement sentencia = null;
         PreparedStatement sentencia2 = null;
@@ -74,10 +74,10 @@ public class TurnoDAOImpl implements TurnoDAO{
             //Hago un query para conseguir el id de la agenda de un mecanico especifico en anio especifico
             String anio = new SimpleDateFormat("yyyy").format(fecha);
 
-            String sql1 = "SELECT * FROM agendaTable where mecanicoId = ? and anio = ?";
+            String sql1 = "SELECT at.* FROM agendaTable at join empleadoTable et on at.mecanicoId = et.id where et.dni = ? and at.anio = ?";
             
             sentencia = con.prepareStatement(sql1);
-            sentencia.setInt(1, mecanicoId);
+            sentencia.setInt(1, mecanicoDNI);
             sentencia.setString(2,anio);
             
             rs = sentencia.executeQuery();
@@ -85,7 +85,7 @@ public class TurnoDAOImpl implements TurnoDAO{
             
             //Hago un query para conseguir le id del cliente segun el DNI
             String sql2 = "SELECT * FROM clienteTable where dni = ?";
-
+            
             sentencia2 = con.prepareStatement(sql2);
             sentencia2.setInt(1, cliente.getDni());
             rs2 = sentencia2.executeQuery();
@@ -148,6 +148,70 @@ public class TurnoDAOImpl implements TurnoDAO{
             }
         }
         return false;
+    }
+
+    @Override
+    public int getCliente(int turnoId) {
+        Connection con = null;
+        PreparedStatement sentencia = null;
+        ResultSet rs = null;
+        int clienteId=0;
+        
+        try{
+            con = conexion.getConnection();
+            String sql = "select clienteId from turnoTable where id = ?";
+            sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, turnoId);
+            
+            rs = sentencia.executeQuery();
+            
+            while (rs.next()) {
+                clienteId = rs.getInt("clienteId");
+            }
+            
+        }catch (SQLException e) {
+            System.err.println(e);
+        }finally{
+            try {
+                rs.close();
+                sentencia.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+        }
+        return clienteId;
+    }
+
+    @Override
+    public int getMecanico(int turnoId) {
+        Connection con = null;
+        PreparedStatement sentencia = null;
+        ResultSet rs = null;
+        int mecanicoId=0;
+        
+        try{
+            con = conexion.getConnection();
+            String sql = "select mecanicoId from turnoTable tt join agendaTable at on at.id = tt.agendaId where tt.id = ?";
+            sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, turnoId);
+            
+            rs = sentencia.executeQuery();
+            
+            while (rs.next()) {
+                mecanicoId = rs.getInt("mecanicoId");
+            }
+            
+        }catch (SQLException e) {
+            System.err.println(e);
+        }finally{
+            try {
+                rs.close();
+                sentencia.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+        }
+        return mecanicoId;
     }
     
 }

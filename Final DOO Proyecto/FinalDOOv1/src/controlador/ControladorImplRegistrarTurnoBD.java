@@ -7,8 +7,10 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import main.GestorGeneral;
 import modelo.Modelo;
@@ -24,6 +26,7 @@ public class ControladorImplRegistrarTurnoBD extends Controlador{
     
     private final GestorGeneral objeto;
     private List<Empleado> mecanicos;
+    private List<String> especialidades;
     private Cliente cliente;
     
     public ControladorImplRegistrarTurnoBD(InterfazVista vista, Modelo modelo) {
@@ -41,23 +44,51 @@ public class ControladorImplRegistrarTurnoBD extends Controlador{
         try {
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case CARGAR:
+                    especialidades = objeto.listarEspecialidades();
+                    vistaRegTurno.cargarEspecialidades(especialidades);                    
+                    break;
+                case ACTUALIZARMECANICOS:
+                    int especialidad = vistaRegTurno.getEspecialidadId();
+                    especialidad++;
                     mecanicos = objeto.buscarEmpleadosMecanicos();
-                    vistaRegTurno.cargarMecanicos(mecanicos);
+                    vistaRegTurno.cargarMecanicos(mecanicos,especialidad);
+                    vistaRegTurno.setEnable(true);
                     break;
                 case REGISTRARTURNOBD:
-                    int mecanicoId = vistaRegTurno.getMecanicoId();
-                    Empleado mecanico = mecanicos.get(mecanicoId);
-                    mecanicoId++;
-                                               
-                    boolean existe = objeto.verificarExistenciaTurno(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(vistaRegTurno.getDate()),mecanico);
+                    boolean existe = true;
+                    int mecanicoId = -1;
+                    Empleado mecanico=null;
+                    if(vistaRegTurno.getEspecialidadId() > -1){
+                        try{
+                            mecanicoId = vistaRegTurno.getMecanicoId();
+                            mecanicos = vistaRegTurno.getEmpleadosLocales();
+                            mecanico = objeto.buscarEmpleado(mecanicos.get(mecanicoId).getDni());
+                        }catch(Exception ex){
+                            vistaRegTurno.imprimeResultado("Ingreso los datos incorrectamente");
+                            break;
+                        }
+                    }
+                    if(mecanicoId > -1 && vistaRegTurno.getEspecialidadId() > -1){
+                        mecanicoId++;
+                    }else{
+                        vistaRegTurno.imprimeResultado("Ingreso los datos incorrectamente");
+                        break;
+                    }
+                    try{
+                        existe = objeto.verificarExistenciaTurno(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(vistaRegTurno.getDate()),mecanico);
+                    }catch(ParseException ex){
+                        vistaRegTurno.imprimeResultado("Ingreso los datos incorrectamente");
+                        break;
+                    }
                     
                     if(!existe){
-                        objeto.agendarTurno(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(vistaRegTurno.getDate()),mecanicoId,cliente);
+                        objeto.asignarTurno(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(vistaRegTurno.getDate()),mecanico.getDni(),cliente);
                         vistaRegTurno.imprimeResultado("Se registro el turno correctamente");
                     }else{
                         vistaRegTurno.imprimeResultado("El turno ya existe");
                     }
                     break;
+
 
             }
         } catch (Exception ex) {

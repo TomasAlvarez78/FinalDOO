@@ -7,6 +7,7 @@ package vista;
 
 import controlador.Controlador;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modeloFactoryPersona.Cliente;
@@ -21,8 +22,12 @@ public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVi
     /**
      * Creates new form VistaRegistroTurnoBD
      */
+    
+    private List<Empleado> empleadoLocales;
+    
     public VistaRegistroTurno() {
         initComponents();
+        empleadoLocales = new ArrayList<>();
     }
 
     /**
@@ -34,23 +39,32 @@ public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVi
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jRadioButton1 = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         cBoxMecanicos = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cBoxEspecialidades = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
+        dateTimePicker = new com.github.lgooddatepicker.components.DateTimePicker();
         btnTurnoReg = new javax.swing.JButton();
+        btnCargarMecanicos = new javax.swing.JButton();
+
+        jRadioButton1.setText("jRadioButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registrar Turno");
         setResizable(false);
 
+        cBoxMecanicos.setEnabled(false);
+
         jLabel1.setText("Mecanico:");
 
-        jLabel2.setText("Fecha y Hora de Turno:");
+        jLabel3.setText("Especialidad:");
 
-        btnTurnoReg.setText("Registrar Turno");
-        btnTurnoReg.setActionCommand(InterfazVista.Operacion.REGISTRARTURNOBD.toString());
+        cBoxEspecialidades.setActionCommand(InterfazVista.Operacion.ACTUALIZARMECANICOS.toString());
+
+        jLabel2.setText("Fecha y Hora de Turno:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,45 +73,64 @@ public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVi
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cBoxMecanicos, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTurnoReg)
+                    .addComponent(cBoxEspecialidades, 0, 283, Short.MAX_VALUE)
+                    .addComponent(cBoxMecanicos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateTimePicker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cBoxEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cBoxMecanicos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTurnoReg)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(dateTimePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
+
+        btnTurnoReg.setText("Registrar Turno");
+        btnTurnoReg.setActionCommand(InterfazVista.Operacion.REGISTRARTURNOBD.toString());
+
+        btnCargarMecanicos.setText("Cargar Mecanicos");
+        btnCargarMecanicos.setActionCommand(InterfazVista.Operacion.ACTUALIZARMECANICOS.toString());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCargarMecanicos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTurnoReg)
+                        .addGap(6, 6, 6)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTurnoReg)
+                    .addComponent(btnCargarMecanicos))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -105,18 +138,24 @@ public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVi
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCargarMecanicos;
     private javax.swing.JButton btnTurnoReg;
+    private javax.swing.JComboBox<String> cBoxEspecialidades;
     private javax.swing.JComboBox<String> cBoxMecanicos;
+    private com.github.lgooddatepicker.components.DateTimePicker dateTimePicker;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtFecha;
+    private javax.swing.JRadioButton jRadioButton1;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void setControlador(Controlador c) {
         this.btnTurnoReg.addActionListener(c);
+        this.btnCargarMecanicos.addActionListener(c);
         c.actionPerformed(new ActionEvent(this, 0, InterfazVista.Operacion.CARGAR.toString()));
+        cBoxEspecialidades.setSelectedIndex(-1);
     }
 
     @Override
@@ -128,8 +167,27 @@ public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVi
     @Override
     public String getDate() {
         try{
-            return this.txtFecha.getText();
-            
+            String fechaFormateada;
+            if(dateTimePicker.datePicker.toString().equals("") || dateTimePicker.timePicker.toString().equals("")){
+                return "";
+            }
+            fechaFormateada = dateTimePicker.datePicker.toString();
+
+            String temp2 = dateTimePicker.timePicker.getText();
+            String dia = temp2.substring(temp2.length() - 2);
+            String hora = temp2.substring(0,temp2.length() - 2);
+            String hora2[] = hora.split(":");
+            if("am".equals(dia) && hora2[0].equals("12")){
+                fechaFormateada += " " + Integer.toString(Integer.parseInt(hora2[0])+12) + ":" + hora2[1];
+            }else if("pm".equals(dia) && hora2[0].equals("12")){
+                fechaFormateada += " " + hora;
+            }
+            if("am".equals(dia)){
+                fechaFormateada += " " + hora;
+            }else{
+                fechaFormateada += " " + Integer.toString(Integer.parseInt(hora2[0])+12) + ":" + hora2[1];
+            }
+            return fechaFormateada;
         }catch(NumberFormatException ex){
             return "";
         }
@@ -156,10 +214,22 @@ public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVi
     }
     
     @Override
-    public void cargarMecanicos(List<Empleado> lista) {
-        lista.forEach(empleado -> {
-            cBoxMecanicos.addItem(empleado.getNombre() + " " + empleado.getApellido());
-        });
+    public void cargarMecanicos(List<Empleado> lista,int especialidad) {
+        cBoxMecanicos.removeAllItems();
+        empleadoLocales.clear();
+        if(especialidad == 0){
+            lista.forEach(empleado -> {
+                empleadoLocales.add(empleado);
+                cBoxMecanicos.addItem(empleado.getNombre() + " " + empleado.getApellido());
+            });
+        }else{
+            lista.forEach(empleado -> {
+                if(empleado.getEspecialidad() == especialidad){
+                    empleadoLocales.add(empleado);
+                    cBoxMecanicos.addItem(empleado.getNombre() + " " + empleado.getApellido());
+                }
+            });
+        }
     }
 
     @Override
@@ -192,5 +262,33 @@ public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVi
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void cargarEspecialidades(List<String> lista) {
+        lista.forEach(especialidad -> {
+            cBoxEspecialidades.addItem(especialidad);
+        });
+    }
+
+    @Override
+    public int getEspecialidadId() {
+        try{
+            return this.cBoxEspecialidades.getSelectedIndex();
+        }catch(NumberFormatException ex){
+            return -1;
+        }
+        
+    }
+    
+    
+    @Override
+    public void setEnable(boolean estado){
+        cBoxMecanicos.setEnabled(estado);
+    }
+
+    @Override
+    public List<Empleado> getEmpleadosLocales() {
+        return empleadoLocales;
+    }
+    
     
 }

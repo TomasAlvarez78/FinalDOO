@@ -15,7 +15,9 @@ import modeloFactoryPersona.Empleado;
  */
 public interface TurnoDAO {
     boolean verificarExistenciaTurno(Date fecha, Empleado mecanico); 
-    boolean asignarTurno(Date fecha,int mecanicoId,Cliente cliente, int estadoId,int telefonico);
+    boolean asignarTurno(Date fecha,int mecanicoDNI,Cliente cliente, int estadoId,int telefonico);
     boolean cambiarEstado(int ticketId,int estadoId);
+    int getCliente(int turnoId);
+    int getMecanico(int turnoId);
     
 }

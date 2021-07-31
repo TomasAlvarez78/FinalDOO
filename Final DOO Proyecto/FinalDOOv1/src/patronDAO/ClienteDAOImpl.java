@@ -75,6 +75,54 @@ public class ClienteDAOImpl implements ClienteDAO{
     }
 
     @Override
+    public Cliente buscarClienteId(int clienteId) {
+        Connection con = null;
+        PreparedStatement sentencia = null;
+        ResultSet rs = null;
+        Cliente cliente = null;
+        
+        try{
+            con = conexion.getConnection();
+            String sql = "select dni, nombre, apellido,sexo, fechaNacimiento, auto,companiaSeguroCuit "
+                    + " from clienteTable where id = ?";
+            sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, clienteId);
+            
+            rs = sentencia.executeQuery();
+            
+            int dniCli;
+            String nombre;
+            String apellido;
+            Date fechaNacimiento;
+            String sexo;
+            String auto;
+            int companiaSeguro;
+            
+            while (rs.next()) {
+                dniCli = rs.getInt("dni");
+                nombre = rs.getString("nombre");
+                apellido = rs.getString("apellido");
+                fechaNacimiento = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("fechaNacimiento"));
+                sexo = rs.getString("sexo");
+                auto = rs.getString("auto");
+                companiaSeguro = rs.getInt("companiaSeguroCuit");
+                cliente = new Cliente(dniCli,nombre, apellido, fechaNacimiento, sexo,auto,companiaSeguro);
+            }
+            
+        }catch (SQLException | ParseException e) {
+            System.err.println(e);
+        }finally{
+            try {
+                rs.close();
+                sentencia.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+        }
+        return cliente;
+    }
+    
+    @Override
     public Cliente buscarCliente(String nombre, String apellido) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -162,7 +210,6 @@ public class ClienteDAOImpl implements ClienteDAO{
                 nombre = rs.getString("nombre");
                 apellido = rs.getString("apellido");
                 fechaNacimiento = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("fechaNacimiento"));
-                System.out.println(fechaNacimiento);
                 sexo = rs.getString("sexo");
                 auto = rs.getString("auto");
                 companiaSeguro = rs.getInt("companiaSeguroCuit");

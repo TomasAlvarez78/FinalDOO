@@ -92,5 +92,7 @@ public abstract class Persona {
     
     
     public abstract String getTipo();
+    
+    public abstract int getEspecialidad();
 
 }

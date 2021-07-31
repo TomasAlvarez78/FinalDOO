@@ -13,6 +13,7 @@ import modeloFactoryPersona.Mecanico;
 import patronDAO.ClienteDAO;
 import patronDAO.EmpleadoDAO;
 import patronDAO.FabricaDAO;
+import patronDAO.FichaMecanicaDAO;
 import patronDAO.SegurosDAO;
 import patronDAO.TurnoDAO;
 
@@ -28,6 +29,8 @@ public class GestorGeneral {
     private final TurnoDAO turnoDao = fabricaDao.getTurnoDao();
     
     private final SegurosDAO seguroDao = fabricaDao.getSeguroDao();
+    
+    private final FichaMecanicaDAO fichaMecanicaDao = fabricaDao.getFichaMecanicaDao();
     
     public boolean agregarEmpleado(int dni,String nombre,String apellido, String sexo, Date fechaNacimiento,int especialidad,String turno,int tipo){
         return empleadoDao.agregarEmpleado(dni, nombre, apellido, sexo, fechaNacimiento, especialidad, turno, tipo);
@@ -51,6 +54,16 @@ public class GestorGeneral {
         
     }
     
+    public List<Empleado> buscarEmpleadosMecanicos(int especialidad){
+        List<Empleado> lista = empleadoDao.listarEmpleadosMecanicos(especialidad);
+        if(lista != null){
+            return lista;
+        }
+        System.err.println("No hay mecanicos");
+        return null;
+        
+    }
+    
     public List<String> listarSeguros(){
         List<String> lista = seguroDao.getSeguros();
         if(lista != null){
@@ -61,7 +74,15 @@ public class GestorGeneral {
         
     }
     
-    
+    public List<String> listarEspecialidades(){
+        List<String> lista = empleadoDao.listarEspecialidades();
+        if(lista != null){
+            return lista;
+        }
+        System.err.println("No hay especialidades");
+        return null;
+        
+    }
     
     public boolean agregarCliente(int dni,String nombre,String apellido, String sexo, Date fechaNacimiento,String auto,int companiaSeguro){
         return clienteDao.agregarCliente(dni, nombre, apellido, sexo, fechaNacimiento, auto, companiaSeguro);
@@ -103,7 +124,7 @@ public class GestorGeneral {
         return false;
     }
     
-    public boolean agendarTurno(Date fecha,int mecanicoId,Cliente cliente){
+    public boolean asignarTurno(Date fecha,int mecanicoId,Cliente cliente){
         boolean estado = turnoDao.asignarTurno(fecha, mecanicoId, cliente, 3, 0);
         if(estado){
             return true;
@@ -117,6 +138,54 @@ public class GestorGeneral {
             return true;
         }
         return false;
+    }
+    
+    public Empleado buscarEmpleadoId(int empleadoId){
+        Empleado empleado = empleadoDao.buscarEmpleadoId(empleadoId);
+        if(empleado != null){
+            return empleado;
+        }
+        return null;
+    }
+    
+    public Cliente buscarClienteId(int clienteId){
+        Cliente cliente = clienteDao.buscarClienteId(clienteId);
+        if(cliente != null){
+            return cliente;
+        }
+        return null;
+    }
+    000
+    public int buscarClienteTurno(int turnoId){
+        int estado = turnoDao.getCliente(turnoId);
+        if(estado != 0){
+            return estado;
+        }
+        return estado;
+    }
+    
+    public int buscarMecanicoTurno(int turnoId){
+        int estado = turnoDao.getMecanico(turnoId);
+        if(estado != 0){
+            return estado;
+        }
+        return estado;
+    }
+    
+    public boolean generarFicha(int idTurno){
+        boolean estado = fichaMecanicaDao.agregarFicha(idTurno);
+        if(estado){
+            return true;
+        }
+        return false;
+    }
+    
+    public int buscarTurno(int fichaId){
+        int turnoId = fichaMecanicaDao.buscarTurno(fichaId);
+        if (turnoId != 0) {
+            return turnoId;
+        }
+        return 0;
     }
     
     

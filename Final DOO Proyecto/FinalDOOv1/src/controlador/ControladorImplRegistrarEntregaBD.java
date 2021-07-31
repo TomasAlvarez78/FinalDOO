@@ -21,7 +21,7 @@ import vista.VistaEntrega;
 public class ControladorImplRegistrarEntregaBD extends Controlador{
     
     private final GestorGeneral objeto;
-    private String ticketId;
+    private String turnoId;
     
     public ControladorImplRegistrarEntregaBD (InterfazVista vista, Modelo modelo) {
         vistaRegEntrega = vista;
@@ -39,17 +39,23 @@ public class ControladorImplRegistrarEntregaBD extends Controlador{
         try {
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case BUSCARTURNO:
-                    ticketId = vistaRegEntrega.getTicket();
-                    Cliente cliente = objeto.buscarClientePorTicket(Integer.parseInt(ticketId));
+                    turnoId = vistaRegEntrega.getTicket();
+                    Cliente cliente = objeto.buscarClientePorTicket(Integer.parseInt(turnoId));
                     vistaRegEntrega.updateDatos(cliente);
                     break;
                 case REGISTRARENTREGA:
                     int respuesta = JOptionPane.showConfirmDialog(((VistaEntrega) this.vistaRegEntrega), "¿Seguro desea registrar la entrega?", "Información", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
                     if (respuesta == JOptionPane.OK_OPTION) {
-                        ticketId = vistaRegEntrega.getTicket();
-                        boolean estado = objeto.cambiarEstado(Integer.parseInt(ticketId), 6);
+                        turnoId = vistaRegEntrega.getTicket();
+                        boolean estado = objeto.cambiarEstado(Integer.parseInt(turnoId), 6);
                         if(estado){
-                            vistaRegEntrega.imprimeResultado("Se registro la entrega del auto correctamente");
+                            boolean estado2 = objeto.generarFicha(Integer.parseInt(turnoId));
+                            if(estado2){
+                                vistaRegEntrega.imprimeResultado("Se registro la entrega del auto correctamente");
+                            }else{
+                                vistaRegEntrega.imprimeResultado("No se pudo generar la ficha mecanica. Consulte al administrador");
+                                objeto.cambiarEstado(Integer.parseInt(turnoId), 3);
+                            }
                         }else{
                             vistaRegEntrega.imprimeResultado("No se pudo registrar la entrega del auto. Consulte al administrador");
                         }

@@ -22,4 +22,9 @@ public class Oficinista extends Empleado{
         return "Soy un oficinista";
     }
 
+    @Override
+    public int getEspecialidad() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

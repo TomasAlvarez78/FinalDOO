@@ -10,12 +10,7 @@ import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import modeloFactoryPersona.Cliente;
 import modeloFactoryPersona.Empleado;
 
@@ -224,6 +219,12 @@ public class VistaRegistroCliente extends javax.swing.JFrame implements Interfaz
     }
 
     @Override
+    public void setEnable(boolean estado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    @Override
     public String getDate() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -233,6 +234,11 @@ public class VistaRegistroCliente extends javax.swing.JFrame implements Interfaz
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public int getEspecialidadId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public void imprimeResultado(String resultado) {
         JOptionPane.showMessageDialog(this,resultado, "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -249,10 +255,9 @@ public class VistaRegistroCliente extends javax.swing.JFrame implements Interfaz
     }
 
     @Override
-    public void cargarMecanicos(List<Empleado> lista) {
+    public void cargarMecanicos(List<Empleado> lista, int especialidad) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
     @Override
     public int getMecanicoId() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -286,6 +291,16 @@ public class VistaRegistroCliente extends javax.swing.JFrame implements Interfaz
         lista.forEach(seguro -> {
             cBoxCompania.addItem(seguro);
         });
+    }
+
+    @Override
+    public void cargarEspecialidades(List<String> lista) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Empleado> getEmpleadosLocales() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

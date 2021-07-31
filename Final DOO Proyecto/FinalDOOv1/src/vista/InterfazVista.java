@@ -15,7 +15,7 @@ import modeloFactoryPersona.Empleado;
  */
 public interface InterfazVista {
     public static enum Operacion {
-        REGISTRARTURNO,REGISTRARTURNOBD,REGISTRARENTREGA,BUSCARUSUARIO,SIGUIENTE,CARGAR,BUSCARTURNO,CANCELAR,REGISTRARCLIENTE,REGISTRARCLIENTEBD;
+        REGISTRARTURNO,REGISTRARTURNOBD,REGISTRARENTREGA,BUSCARUSUARIO,SIGUIENTE,CARGAR,BUSCARTURNO,CANCELAR,REGISTRARCLIENTE,REGISTRARCLIENTEBD,ACTUALIZARMECANICOS,ACTUALIZARFICHAMECANICA,GENERARDIARIO,GENERARMENSUAL,BUSCARFICHA,GUARDAR,LIMPIAR;
     };
 
     void setControlador(Controlador c);
@@ -23,6 +23,7 @@ public interface InterfazVista {
     void cerrarVista();
     
     int getMecanicoId();
+    int getEspecialidadId();
     int getDNI();
     String getDate();
     String getTicket();
@@ -31,8 +32,12 @@ public interface InterfazVista {
     void imprimeResultado(String resultado);
     void imprimeError(Exception e);
     void updateDatos(Cliente c);
-    void cargarMecanicos(List <Empleado> lista);
+    void cargarMecanicos(List <Empleado> lista,int especialidad);
     void cargarSeguros(List <String> lista);
+    void cargarEspecialidades(List <String> lista);
+    void setEnable(boolean estado);
+    
+    List<Empleado> getEmpleadosLocales();
     
 
 

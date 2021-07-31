@@ -14,16 +14,20 @@ import java.util.List;
  */
 public interface EmpleadoDAO {
     Empleado buscarEmpleado(int dni);
+    Empleado buscarEmpleadoId(int id);
     Empleado buscarEmpleado(String nombre,String apellido);
     
     List<Empleado> listarEmpleados();
     List<Empleado> listarEmpleadosMecanicos();
+    List<Empleado> listarEmpleadosMecanicos(int especialidadId);
     
     boolean agregarEmpleado(int dni,String nombre,String apellido, String sexo, Date fechaNacimiento,int especialidadId,String turno,int tipo);
     
     boolean modificarEmpleado(int dni,String nombre,String apellido, String sexo, Date fechaNacimiento,int especialidadId,String turno,int tipo);
     
     boolean borrarEmpleado(int dni);
+    
+    List<String> listarEspecialidades();
     
     void cerrarConexion();
     

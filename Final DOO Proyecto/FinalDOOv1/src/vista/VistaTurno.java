@@ -273,12 +273,23 @@ public class VistaTurno extends javax.swing.JFrame implements InterfazVista{
     }
     
     @Override
+    public void setEnable(boolean estado) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    @Override
     public void imprimeError(Exception e) {
         JOptionPane.showMessageDialog(this, "Ocurrio una excepción: " + e.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override
     public void cargarSeguros(List<String> lista) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public int getEspecialidadId() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
@@ -332,7 +343,7 @@ public class VistaTurno extends javax.swing.JFrame implements InterfazVista{
     }
 
     @Override
-    public void cargarMecanicos(List<Empleado> lista) {
+    public void cargarMecanicos(List<Empleado> lista, int especialidad) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -354,6 +365,16 @@ public class VistaTurno extends javax.swing.JFrame implements InterfazVista{
 
     @Override
     public Cliente getCliente() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void cargarEspecialidades(List<String> lista) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Empleado> getEmpleadosLocales() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

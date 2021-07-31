@@ -42,6 +42,11 @@ public class Cliente extends Persona{
     public void setCompaniaSeguro(int companiaSeguro) {
         this.companiaSeguro = companiaSeguro;
     }
+
+    @Override
+    public int getEspecialidad() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         
     
 
