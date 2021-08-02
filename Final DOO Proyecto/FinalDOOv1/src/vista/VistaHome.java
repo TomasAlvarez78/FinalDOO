@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package vista;
+import clases.FichaMecanica;
 import javax.swing.JOptionPane;
 import controlador.Controlador;
 import java.util.List;
@@ -31,9 +32,9 @@ public class VistaHome extends javax.swing.JFrame implements InterfazVista {
         jPanel1 = new javax.swing.JPanel();
         btnRegistrarTurno = new javax.swing.JButton();
         btnRegistrarEntrega = new javax.swing.JButton();
-        btnRegistrarEntrega1 = new javax.swing.JButton();
-        btnActFich = new javax.swing.JButton();
-        btnRegistrarEntrega2 = new javax.swing.JButton();
+        btnInfDiario = new javax.swing.JButton();
+        btnActFicha = new javax.swing.JButton();
+        btnInfMensual = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -47,14 +48,14 @@ public class VistaHome extends javax.swing.JFrame implements InterfazVista {
         btnRegistrarEntrega.setText("Registrar entrega");
         btnRegistrarEntrega.setActionCommand(InterfazVista.Operacion.REGISTRARENTREGA.toString());
 
-        btnRegistrarEntrega1.setText("Generar informe diario");
-        btnRegistrarEntrega1.setActionCommand(InterfazVista.Operacion.GENERARDIARIO.toString());
+        btnInfDiario.setText("Generar informe diario");
+        btnInfDiario.setActionCommand(InterfazVista.Operacion.GENERARDIARIO.toString());
 
-        btnActFich.setText("Actualizar ficha mecanica");
-        btnActFich.setActionCommand(InterfazVista.Operacion.ACTUALIZARFICHAMECANICA.toString());
+        btnActFicha.setText("Actualizar ficha mecanica");
+        btnActFicha.setActionCommand(InterfazVista.Operacion.ACTUALIZARFICHAMECANICA.toString());
 
-        btnRegistrarEntrega2.setText("Generar informe mensual");
-        btnRegistrarEntrega2.setActionCommand(InterfazVista.Operacion.GENERARMENSUAL.toString());
+        btnInfMensual.setText("Generar informe mensual");
+        btnInfMensual.setActionCommand(InterfazVista.Operacion.GENERARMENSUAL.toString());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,9 +66,9 @@ public class VistaHome extends javax.swing.JFrame implements InterfazVista {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnRegistrarEntrega, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRegistrarTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnActFich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegistrarEntrega1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRegistrarEntrega2, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                    .addComponent(btnActFicha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnInfDiario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnInfMensual, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -78,11 +79,11 @@ public class VistaHome extends javax.swing.JFrame implements InterfazVista {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegistrarEntrega)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnActFich)
+                .addComponent(btnActFicha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegistrarEntrega1)
+                .addComponent(btnInfDiario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegistrarEntrega2)
+                .addComponent(btnInfMensual)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -127,10 +128,10 @@ public class VistaHome extends javax.swing.JFrame implements InterfazVista {
     }// </editor-fold>//GEN-END:initComponents
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActFich;
+    private javax.swing.JButton btnActFicha;
+    private javax.swing.JButton btnInfDiario;
+    private javax.swing.JButton btnInfMensual;
     private javax.swing.JButton btnRegistrarEntrega;
-    private javax.swing.JButton btnRegistrarEntrega1;
-    private javax.swing.JButton btnRegistrarEntrega2;
     private javax.swing.JButton btnRegistrarTurno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -141,6 +142,9 @@ public class VistaHome extends javax.swing.JFrame implements InterfazVista {
     public void setControlador(Controlador c) {
         this.btnRegistrarTurno.addActionListener(c);
         this.btnRegistrarEntrega.addActionListener(c);
+        this.btnActFicha.addActionListener(c);
+        this.btnInfDiario.addActionListener(c);
+        this.btnInfMensual.addActionListener(c);
     }
 
     @Override
@@ -193,7 +197,12 @@ public class VistaHome extends javax.swing.JFrame implements InterfazVista {
     public void cargarMecanicos(List<Empleado> lista, int especialidad) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+     @Override
+    public void updateDatos(FichaMecanica f) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     @Override
     public int getMecanicoId() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -224,6 +233,7 @@ public class VistaHome extends javax.swing.JFrame implements InterfazVista {
     public List<Empleado> getEmpleadosLocales() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
     
     

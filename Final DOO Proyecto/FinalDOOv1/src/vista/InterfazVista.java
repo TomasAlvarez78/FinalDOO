@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package vista;
+import clases.FichaMecanica;
 import controlador.Controlador;
 import java.util.List;
 import modeloFactoryPersona.Cliente;
@@ -32,6 +33,7 @@ public interface InterfazVista {
     void imprimeResultado(String resultado);
     void imprimeError(Exception e);
     void updateDatos(Cliente c);
+    void updateDatos(FichaMecanica f);
     void cargarMecanicos(List <Empleado> lista,int especialidad);
     void cargarSeguros(List <String> lista);
     void cargarEspecialidades(List <String> lista);

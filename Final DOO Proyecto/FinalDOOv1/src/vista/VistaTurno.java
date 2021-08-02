@@ -5,6 +5,7 @@
  */
 package vista;
 
+import clases.FichaMecanica;
 import controlador.Controlador;
 import javax.swing.JOptionPane;
 import modeloFactoryPersona.Cliente;
@@ -375,6 +376,11 @@ public class VistaTurno extends javax.swing.JFrame implements InterfazVista{
 
     @Override
     public List<Empleado> getEmpleadosLocales() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void updateDatos(FichaMecanica f) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

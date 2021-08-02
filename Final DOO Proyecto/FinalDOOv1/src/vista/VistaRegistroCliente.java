@@ -5,6 +5,7 @@
  */
 package vista;
 
+import clases.FichaMecanica;
 import controlador.Controlador;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
@@ -300,6 +301,11 @@ public class VistaRegistroCliente extends javax.swing.JFrame implements Interfaz
 
     @Override
     public List<Empleado> getEmpleadosLocales() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+     @Override
+    public void updateDatos(FichaMecanica f) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

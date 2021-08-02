@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.sql.Types;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -107,5 +109,58 @@ public class FichaMecanicaDAOImpl implements FichaMecanicaDAO{
     public void cerrarConexion() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public FichaMecanica getFichaId(int fichaId) {
+        
+        Connection con = null;
+        PreparedStatement sentencia = null;
+        ResultSet rs = null;
+        FichaMecanica fichaMecanica = null;
+        
+        try{
+            con = conexion.getConnection();
+            String sql = "select descripcion, fechaSalida, tiempoEmpleado,gastos, conformidad from fichaMecanicaTable where id = ?";
+            sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, fichaId);
+            
+            rs = sentencia.executeQuery();
+            
+            String descripcion;
+            Date fechaSalida=null;
+            int tiempoEmpleado;
+            String gastos;
+            int conformidad;
+           
+            
+            while (rs.next()) {
+                descripcion = rs.getString("descripcion");
+                if(rs.getString("fechaSalida") != null){
+                    fechaSalida = new SimpleDateFormat("MM dd,yyyy").parse(rs.getString("fechaSalida"));
+                }
+                tiempoEmpleado = rs.getInt("tiempoEmpleado");
+                gastos = rs.getString("gastos");
+                conformidad = rs.getInt("conformidad");
+                if(gastos == null){
+                    gastos = "";
+                }
+                fichaMecanica = new FichaMecanica(descripcion,fechaSalida, tiempoEmpleado, gastos, conformidad);
+            }
+            
+        }catch (SQLException e) {
+            System.err.println(e);
+        } catch (ParseException ex) {
+            Logger.getLogger(FichaMecanicaDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                rs.close();
+                sentencia.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+        }
+        return fichaMecanica;
+    }
     
 }
+    

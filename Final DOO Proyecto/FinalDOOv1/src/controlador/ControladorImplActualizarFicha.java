@@ -8,10 +8,11 @@ package controlador;
 import clases.FichaMecanica;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.HashSet;
 import main.GestorGeneral;
 import modelo.Modelo;
 import modeloFactoryPersona.Cliente;
-import modeloFactoryPersona.Mecanico;
+import modeloFactoryPersona.Empleado;
 import vista.InterfazVista;
 
 /**
@@ -20,9 +21,12 @@ import vista.InterfazVista;
  */
 public class ControladorImplActualizarFicha extends Controlador {
     
+    FichaMecanica fichaMecanica;
+    
     public ControladorImplActualizarFicha(InterfazVista vista, Modelo modelo) {
-        vistaActFicha = vista;
+        vistaFichaMecanica = vista;
         MODELO = modelo;
+        fichaMecanica = new FichaMecanica();
     }
 
     @Override
@@ -34,29 +38,47 @@ public class ControladorImplActualizarFicha extends Controlador {
     public void actionPerformed(ActionEvent e) {
         
         try {
+            System.out.println("Alguien toco un boton");
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case BUSCARFICHA:
-                    String ficha = vistaActFicha.getTicket();
-                    
+                    String ficha = vistaFichaMecanica.getTicket();
+                    int fichaId;
+                    int turnoId;
                     GestorGeneral objeto = new GestorGeneral();
-                    int turnoId = objeto.buscarTurno(Integer.parseInt(ficha));
+                    try{
+                        fichaId = Integer.parseInt(ficha);
+                    }catch(NumberFormatException ex){
+                        vistaFichaMecanica.imprimeResultado("Error, ingreso un valor no permitido");
+                        break;
+                    }
+                    if(fichaId > 0){
+                        turnoId = objeto.buscarTurno(fichaId);
+                    }else{
+                        vistaFichaMecanica.imprimeResultado("Error, ingreso un valor no permitido");
+                        break;
+                    }
                     int clienteId = objeto.buscarClienteTurno(turnoId);
                     int mecanicoId = objeto.buscarMecanicoTurno(turnoId);
-                    Mecanico mecanico = objeto.buscarEmpleadoId(mecanicoId);
+                    Empleado empleado = objeto.buscarEmpleadoId(mecanicoId);
                     Cliente cliente = objeto.buscarClienteId(clienteId);
-                    vistaTurno.updateDatos(cliente);
-                    
+                    fichaMecanica = objeto.buscarFichaId(fichaId);
+                    if (cliente != null && empleado != null){
+                        fichaMecanica.setCliente(cliente);
+                        fichaMecanica.setMecanico(empleado);
+                        vistaFichaMecanica.updateDatos(fichaMecanica);
+                    }else{
+                        vistaFichaMecanica.imprimeResultado("Error, no se pudo encontrar la ficha designada");
+                        break;
+                    }
                     break;
                 case GUARDAR:
-                    vistaRegTurno = new VistaRegistroTurno();
-                    Controlador controladorImplRegistrarBD = new ControladorImplRegistrarTurnoBD(vistaRegTurno,this.MODELO);
-                    controladorImplRegistrarBD.setCliente(cliente);
-                    vistaRegTurno.setControlador(controladorImplRegistrarBD);
-                    vistaRegTurno.iniciaVista();
+                    //int estado = vistaFichaMecanica.
+                    
                     break;                            
             }
         } catch (Exception ex) {
-            vistaTurno.imprimeError(ex);
+            System.out.println("Error: " + ex);
+            vistaFichaMecanica.imprimeError(ex);
         }
     }
 

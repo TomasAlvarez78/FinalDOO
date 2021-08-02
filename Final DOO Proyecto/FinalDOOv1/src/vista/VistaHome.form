@@ -73,9 +73,9 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btnRegistrarEntrega" alignment="0" max="32767" attributes="0"/>
                       <Component id="btnRegistrarTurno" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnActFich" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnRegistrarEntrega1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnRegistrarEntrega2" alignment="0" pref="207" max="32767" attributes="0"/>
+                      <Component id="btnActFicha" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnInfDiario" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnInfMensual" alignment="0" pref="207" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -89,11 +89,11 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnRegistrarEntrega" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnActFich" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnActFicha" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnRegistrarEntrega1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnInfDiario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnRegistrarEntrega2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnInfMensual" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -116,7 +116,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRegistrarEntrega1">
+        <Component class="javax.swing.JButton" name="btnInfDiario">
           <Properties>
             <Property name="text" type="java.lang.String" value="Generar informe diario"/>
             <Property name="actionCommand" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -124,7 +124,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnActFich">
+        <Component class="javax.swing.JButton" name="btnActFicha">
           <Properties>
             <Property name="text" type="java.lang.String" value="Actualizar ficha mecanica"/>
             <Property name="actionCommand" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -132,7 +132,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnRegistrarEntrega2">
+        <Component class="javax.swing.JButton" name="btnInfMensual">
           <Properties>
             <Property name="text" type="java.lang.String" value="Generar informe mensual"/>
             <Property name="actionCommand" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">

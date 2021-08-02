@@ -5,6 +5,7 @@
  */
 package vista;
 
+import clases.FichaMecanica;
 import controlador.Controlador;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -205,7 +206,7 @@ public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVi
 
     @Override
     public void imprimeError(Exception e) {
-         JOptionPane.showMessageDialog(this, "Ocurrio una excepción: " + e.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Ocurrio una excepción: " + e.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override
@@ -288,6 +289,11 @@ public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVi
     @Override
     public List<Empleado> getEmpleadosLocales() {
         return empleadoLocales;
+    }
+
+     @Override
+    public void updateDatos(FichaMecanica f) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

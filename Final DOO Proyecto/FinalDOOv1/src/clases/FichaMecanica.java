@@ -7,32 +7,20 @@ package clases;
 
 import java.util.Date;
 import modeloFactoryPersona.Cliente;
-import modeloFactoryPersona.Mecanico;
+import modeloFactoryPersona.Empleado;
 
 /**
  *
  * @author cirkuit
  */
 public class FichaMecanica {
-    Mecanico mecanico;
-    Cliente cliente;
-    String descripcion;
-    Date FechayHora;
-    int tiempoEmpleado;
-    boolean conformidad;
-    
-    public FichaMecanica(Mecanico mecanico, Cliente cliente, String descripcion, Date FechayHora, int tiempoEmpleado, boolean conformidad) {
-        this.mecanico = mecanico;
-        this.cliente = cliente;
-        this.descripcion = descripcion;
-        this.FechayHora = FechayHora;
-    }
-    
-    public Mecanico getMecanico() {
+    Empleado mecanico;
+
+    public Empleado getMecanico() {
         return mecanico;
     }
 
-    public void setMecanico(Mecanico mecanico) {
+    public void setMecanico(Empleado mecanico) {
         this.mecanico = mecanico;
     }
 
@@ -60,6 +48,14 @@ public class FichaMecanica {
         this.FechayHora = FechayHora;
     }
 
+    public String getGastos() {
+        return gastos;
+    }
+
+    public void setGastos(String gastos) {
+        this.gastos = gastos;
+    }
+
     public int getTiempoEmpleado() {
         return tiempoEmpleado;
     }
@@ -68,11 +64,33 @@ public class FichaMecanica {
         this.tiempoEmpleado = tiempoEmpleado;
     }
 
-    public boolean isConformidad() {
+    public int isConformidad() {
         return conformidad;
     }
 
-    public void setConformidad(boolean conformidad) {
+    public void setConformidad(int conformidad) {
+        this.conformidad = conformidad;
+    }
+    Cliente cliente;
+    String descripcion;
+    Date FechayHora;
+    String gastos;
+    int tiempoEmpleado;
+    int conformidad;
+    
+    public FichaMecanica() {
+        
+    }
+    
+    public FichaMecanica(String descripcion, Date FechayHora, int tiempoEmpleado,String gastos, int conformidad) {
+        this.descripcion = descripcion;
+        if(FechayHora != null){
+            this.FechayHora = FechayHora;
+        }
+        if(tiempoEmpleado > 0)
+            this.tiempoEmpleado = tiempoEmpleado;
+        if(gastos.length() >  0)
+            this.gastos = gastos;
         this.conformidad = conformidad;
     }
     

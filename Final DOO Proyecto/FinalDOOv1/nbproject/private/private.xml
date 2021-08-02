@@ -3,7 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/run/media/DiscExterno/Facultad%204to/Diseno%20Orientado%20a%20Objetos/Trabajo%20Final%20DOO/Final%20DOO%20Proyecto/FinalDOOv1/src/main/GestorGeneral.java</file>
+            <file>file:/run/media/DiscExterno/Facultad%204to/Diseno%20Orientado%20a%20Objetos/Trabajo%20Final%20DOO/Final%20DOO%20Proyecto/FinalDOOv1/src/clases/FichaMecanica.java</file>
+            <file>file:/run/media/DiscExterno/Facultad%204to/Diseno%20Orientado%20a%20Objetos/Trabajo%20Final%20DOO/Final%20DOO%20Proyecto/FinalDOOv1/src/vista/VistaFichaMecanica.java</file>
+            <file>file:/run/media/DiscExterno/Facultad%204to/Diseno%20Orientado%20a%20Objetos/Trabajo%20Final%20DOO/Final%20DOO%20Proyecto/FinalDOOv1/src/patronDAO/FichaMecanicaDAO.java</file>
             <file>file:/run/media/DiscExterno/Facultad%204to/Diseno%20Orientado%20a%20Objetos/Trabajo%20Final%20DOO/Final%20DOO%20Proyecto/FinalDOOv1/src/controlador/ControladorImplActualizarFicha.java</file>
         </group>
     </open-files>

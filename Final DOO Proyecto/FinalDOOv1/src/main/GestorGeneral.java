@@ -7,9 +7,9 @@ package main;
 
 import java.util.Date;
 import java.util.List;
+import clases.FichaMecanica;
 import modeloFactoryPersona.Cliente;
 import modeloFactoryPersona.Empleado;
-import modeloFactoryPersona.Mecanico;
 import patronDAO.ClienteDAO;
 import patronDAO.EmpleadoDAO;
 import patronDAO.FabricaDAO;
@@ -126,18 +126,12 @@ public class GestorGeneral {
     
     public boolean asignarTurno(Date fecha,int mecanicoId,Cliente cliente){
         boolean estado = turnoDao.asignarTurno(fecha, mecanicoId, cliente, 3, 0);
-        if(estado){
-            return true;
-        }
-        return false;
+        return estado;
     }
     
     public boolean cambiarEstado(int ticketId,int estadoId){
         boolean estado = turnoDao.cambiarEstado(ticketId,estadoId);
-        if(estado){
-            return true;
-        }
-        return false;
+        return estado;
     }
     
     public Empleado buscarEmpleadoId(int empleadoId){
@@ -155,12 +149,8 @@ public class GestorGeneral {
         }
         return null;
     }
-    000
     public int buscarClienteTurno(int turnoId){
         int estado = turnoDao.getCliente(turnoId);
-        if(estado != 0){
-            return estado;
-        }
         return estado;
     }
     
@@ -186,6 +176,10 @@ public class GestorGeneral {
             return turnoId;
         }
         return 0;
+    }
+    
+    public FichaMecanica buscarFichaId(int fichaId){
+        return fichaMecanicaDao.getFichaId(fichaId);
     }
     
     

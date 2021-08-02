@@ -16,6 +16,8 @@ import java.util.List;
 public interface FichaMecanicaDAO {
     int buscarTurno(int fichaId);
     
+    FichaMecanica getFichaId(int fichaId);
+    
     List <FichaMecanica> listarFichasMensual(Date fecha);
     
     boolean agregarFicha(int idTurno);

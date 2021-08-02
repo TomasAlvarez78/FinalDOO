@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import vista.InterfazVista;
 import modelo.Modelo;
 import modeloFactoryPersona.Cliente;
+import prototipovistas.VistaFichaMecanica;
 import vista.VistaEntrega;
 import vista.VistaTurno;
 
@@ -27,6 +28,7 @@ public class ControladorImplHome extends Controlador{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("boton");
         try {
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case REGISTRARTURNO:
@@ -44,7 +46,10 @@ public class ControladorImplHome extends Controlador{
                     vistaRegEntrega.iniciaVista();
                     break;
                 case ACTUALIZARFICHAMECANICA:
-                    
+                    vistaFichaMecanica = new VistaFichaMecanica();
+                    Controlador controladorImplActualizarFicha = new ControladorImplActualizarFicha(vistaFichaMecanica,this.MODELO);
+                    vistaFichaMecanica.setControlador(controladorImplActualizarFicha);
+                    vistaFichaMecanica.iniciaVista();
                     break;
             }
         } catch (Exception ex) {
