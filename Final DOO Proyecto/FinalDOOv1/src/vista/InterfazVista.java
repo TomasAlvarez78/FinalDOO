@@ -28,6 +28,8 @@ public interface InterfazVista {
     int getDNI();
     String getDate();
     String getTicket();
+    int getEstado();
+    String getString();
     
     Cliente getCliente();
     void imprimeResultado(String resultado);

@@ -37,6 +37,7 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtFicha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -58,8 +59,12 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
         datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
         jLabel7 = new javax.swing.JLabel();
         txtTiempo = new javax.swing.JFormattedTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        checkConformidad = new javax.swing.JCheckBox();
+        checkBoxEntregado = new javax.swing.JCheckBox();
+        checkConformidadFalse = new javax.swing.JCheckBox();
+        checkConformidadTrue = new javax.swing.JCheckBox();
+        jLabel9 = new javax.swing.JLabel();
+
+        jLabel8.setText("jLabel8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -68,11 +73,17 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
 
         jLabel2.setText("Cliente:");
 
+        txtCliente.setEnabled(false);
+
         jLabel3.setText("Mecanico asignado:");
+
+        txtMecanico.setEnabled(false);
 
         jLabel4.setText("Descripcion:");
 
         jLabel5.setText("Vehiculo:");
+
+        txtVehiculo.setEnabled(false);
 
         btnGuardar.setText("Guardar");
         btnGuardar.setActionCommand(InterfazVista.Operacion.GUARDAR.toString());
@@ -125,9 +136,24 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
 
         txtTiempo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
-        jCheckBox1.setText("Entregado");
+        checkBoxEntregado.setText("Entregado");
+        checkBoxEntregado.setEnabled(false);
 
-        checkConformidad.setText("Conforme");
+        checkConformidadFalse.setText("No");
+        checkConformidadFalse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkConformidadFalseActionPerformed(evt);
+            }
+        });
+
+        checkConformidadTrue.setText("Si");
+        checkConformidadTrue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkConformidadTrueActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Conforme:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,17 +198,19 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
                                 .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jButton3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnGuardar))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(checkConformidad)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jCheckBox1)))))
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnGuardar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(checkConformidadTrue)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(checkConformidadFalse)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(checkBoxEntregado)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -218,10 +246,13 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
                     .addComponent(jLabel6)
                     .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(checkConformidad))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkBoxEntregado)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(checkConformidadTrue)
+                        .addComponent(checkConformidadFalse))
+                    .addComponent(jLabel9))
+                .addGap(9, 9, 9)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -242,6 +273,16 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
         limpiar();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void checkConformidadFalseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkConformidadFalseActionPerformed
+        // TODO add your handling code here:
+        this.checkConformidadTrue.setSelected(false);
+    }//GEN-LAST:event_checkConformidadFalseActionPerformed
+
+    private void checkConformidadTrueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkConformidadTrueActionPerformed
+        // TODO add your handling code here:
+        this.checkConformidadFalse.setSelected(false);
+    }//GEN-LAST:event_checkConformidadTrueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,11 +322,12 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JCheckBox checkConformidad;
+    private javax.swing.JCheckBox checkBoxEntregado;
+    private javax.swing.JCheckBox checkConformidadFalse;
+    private javax.swing.JCheckBox checkConformidadTrue;
     private com.github.lgooddatepicker.components.DatePicker datePicker1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -293,6 +335,8 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable table;
@@ -382,10 +426,10 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
         }
         switch(f.isConformidad()){
             case 0:
-                this.checkConformidad.setBackground(Color.red);
+                this.checkConformidadFalse.setSelected(false);
                 break;
             case 1:
-                this.checkConformidad.setBackground(Color.green);
+                this.checkConformidadTrue.setSelected(true);
                 break;
         }
         if(f.getGastos() != null){
@@ -402,9 +446,14 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
             }
         }
         if(f.getFechayHora() != null){
-            String fechaTemp = f.getFechayHora().toString().split("00")[0];
-            this.datePicker1.setText(fechaTemp);
+            this.datePicker1.setText(f.getFechayHora());
+            this.checkBoxEntregado.setSelected(true);
+            toggle(false);
+        }else{
+            this.checkBoxEntregado.setSelected(false);
+            toggle(true);
         }
+        
     }
     
     @Override
@@ -438,7 +487,9 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
         this.txtDescripcion.setText("");
         this.txtTiempo.setText("");
         this.txtVehiculo.setText("");
-        this.table.removeAll();
+        this.checkConformidadTrue.setSelected(false);
+        this.checkConformidadFalse.setSelected(false);
+        this.datePicker1.setText("");
         int row = this.table.getRowCount();
         int column = this.table.getColumnCount();
         for (int i = 0; i < row; i++) {
@@ -446,6 +497,47 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
                 this.table.setValueAt("", i, j);
             }
         }
+    }
+    
+    public void toggle(boolean estado){
+        this.txtDescripcion.setEnabled(estado);
+        this.txtTiempo.setEnabled(estado);
+        this.datePicker1.setEnabled(estado);
+        this.checkConformidadFalse.setEnabled(estado);
+        this.checkConformidadTrue.setEnabled(estado);
+        this.table.setEnabled(estado);
+    }
+    @Override
+    public String getString(){
+       String stringTemp = "";
+       
+       return stringTemp;
+       
+    }
+    
+    @Override
+    public int getEstado(){
+        if(this.txtDescripcion.getText().length() < 20){
+            return 2;
+        }
+        if(this.txtTiempo.getText().length() < 1){
+            return 3;
+        }
+        if(this.datePicker1.getText() == null){
+            return 4;
+        }
+        if(this.checkConformidadTrue.isSelected() == false && this.checkConformidadFalse.isSelected() == false){
+            return 5;
+        }
+        int rows = this.table.getRowCount();
+        int column = this.table.getColumnCount();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < column; j++) {
+                
+            }
+            
+        }
+       return 1;
     }
 }
     

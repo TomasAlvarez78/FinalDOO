@@ -5,7 +5,6 @@
  */
 package clases;
 
-import java.util.Date;
 import modeloFactoryPersona.Cliente;
 import modeloFactoryPersona.Empleado;
 
@@ -15,6 +14,29 @@ import modeloFactoryPersona.Empleado;
  */
 public class FichaMecanica {
     Empleado mecanico;
+    Cliente cliente;
+    String descripcion;
+    String FechayHora;
+    String gastos;
+    int tiempoEmpleado;
+    int conformidad;
+    
+    public FichaMecanica() {
+        
+    }
+    
+    public FichaMecanica(String descripcion, String FechayHora, int tiempoEmpleado,String gastos, int conformidad) {
+        this.descripcion = descripcion;
+        if(FechayHora != null){
+            this.FechayHora = FechayHora;
+        }
+        if(tiempoEmpleado > 0)
+            this.tiempoEmpleado = tiempoEmpleado;
+        if(gastos.length() >  0)
+            this.gastos = gastos;
+        this.conformidad = conformidad;
+    }
+    
 
     public Empleado getMecanico() {
         return mecanico;
@@ -40,11 +62,11 @@ public class FichaMecanica {
         this.descripcion = descripcion;
     }
 
-    public Date getFechayHora() {
+    public String getFechayHora() {
         return FechayHora;
     }
 
-    public void setFechayHora(Date FechayHora) {
+    public void setFechayHora(String FechayHora) {
         this.FechayHora = FechayHora;
     }
 
@@ -71,28 +93,7 @@ public class FichaMecanica {
     public void setConformidad(int conformidad) {
         this.conformidad = conformidad;
     }
-    Cliente cliente;
-    String descripcion;
-    Date FechayHora;
-    String gastos;
-    int tiempoEmpleado;
-    int conformidad;
     
-    public FichaMecanica() {
-        
-    }
-    
-    public FichaMecanica(String descripcion, Date FechayHora, int tiempoEmpleado,String gastos, int conformidad) {
-        this.descripcion = descripcion;
-        if(FechayHora != null){
-            this.FechayHora = FechayHora;
-        }
-        if(tiempoEmpleado > 0)
-            this.tiempoEmpleado = tiempoEmpleado;
-        if(gastos.length() >  0)
-            this.gastos = gastos;
-        this.conformidad = conformidad;
-    }
     
     
 }

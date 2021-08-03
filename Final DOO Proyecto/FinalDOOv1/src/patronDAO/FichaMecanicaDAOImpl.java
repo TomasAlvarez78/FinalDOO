@@ -127,7 +127,7 @@ public class FichaMecanicaDAOImpl implements FichaMecanicaDAO{
             rs = sentencia.executeQuery();
             
             String descripcion;
-            Date fechaSalida=null;
+            String fechaSalida;
             int tiempoEmpleado;
             String gastos;
             int conformidad;
@@ -135,9 +135,7 @@ public class FichaMecanicaDAOImpl implements FichaMecanicaDAO{
             
             while (rs.next()) {
                 descripcion = rs.getString("descripcion");
-                if(rs.getString("fechaSalida") != null){
-                    fechaSalida = new SimpleDateFormat("MM dd,yyyy").parse(rs.getString("fechaSalida"));
-                }
+                fechaSalida = rs.getString("fechaSalida");
                 tiempoEmpleado = rs.getInt("tiempoEmpleado");
                 gastos = rs.getString("gastos");
                 conformidad = rs.getInt("conformidad");
@@ -149,8 +147,6 @@ public class FichaMecanicaDAOImpl implements FichaMecanicaDAO{
             
         }catch (SQLException e) {
             System.err.println(e);
-        } catch (ParseException ex) {
-            Logger.getLogger(FichaMecanicaDAOImpl.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             try {
                 rs.close();
