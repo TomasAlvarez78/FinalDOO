@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import modeloFactoryControlador.ControladorFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import main.GestorGeneral;

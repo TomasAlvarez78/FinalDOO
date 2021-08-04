@@ -1,5 +1,4 @@
 @startuml ModeloMVC
-
 hide empty attributes
 
 package "Main"{
@@ -9,15 +8,18 @@ package "Main"{
 }
 
 'Controladores
-package "Controlador"{
+package "Controlador" {
 	abstract class Controlador
-	class ControladorImplHome
+
+	class ControladorActualizarFicha
 	class ControladorImplBuscarUsuario
-	class ControladorImplRegistrarTurnoBD
+	class ControladorImplHome
+	class ControladorImplInformeDiario
+	class ControladorImplRegistrarCliente
 	class ControladorImplRegistrarEntregaBD
+	class ControladorImplRegistrarTurnoBD
+	class ControladorImplInformeMensual
 }
-
-
 
 package "Vista"{
 	'Vistas
@@ -25,22 +27,21 @@ package "Vista"{
 	class VistaHome
 	class VistaTurno
 	class VistaRegistroTurno
-	class VistaEntrega
+	class VistaRegEntrega
+	class VistaRegCliente
+	class VistaFichaMecanica
+	class VistaInformeDiario
+	class VistaInformeMensual
 }
 
 
 package "Modelo"{
 	'Modelos
 	class Modelo
-	package "Factory Method Persona"{
-		abstract class Persona{
-			+ getNombre()
-		}
 
-		abstract class Empleado{
-			+ atender()
-		}
-		
+	package "Factory Method Persona"{
+		abstract class Persona
+		abstract class Empleado
 		abstract class PersonaFactoryMethod{
 			+ crearPersona( id )
 		}
@@ -49,18 +50,12 @@ package "Modelo"{
 		' 1 - Cliente
 		' 2 - Empleado
 		' 3 - Mecanico
-		class PersonaFactory{
-			+ crearPersona ( id )
-		}
-		class Cliente{
-			+ quejarse()
-		}
-		class Mecanico{
-			+ arreglar()
-		}
-		class Oficinista{
-			+ llamar()
-		}
+
+		class PersonaFactory
+		class Cliente
+		class Mecanico
+		class Oficinista
+
 		PersonaFactory -left-|> PersonaFactoryMethod
 		PersonaFactory ..> Cliente : <<instancia>>
 		PersonaFactory ..> Mecanico : <<instancia>>
@@ -73,12 +68,12 @@ package "Modelo"{
 	}
 
 	package "DAO" <<Database>>{
-
-		
 		package "FabricaDAO"{
 			interface EmpleadoDAO
 			interface ClienteDAO
 			interface TurnoDAO
+			interface FichaMecanicaDAO
+			interface SegurosDAO
 
 			abstract class FabricaDAO
 
@@ -87,55 +82,87 @@ package "Modelo"{
 			class TurnoDAOImpl
 			class ConexionSQLite
 			class SqlFabricaDAO
-
+			class FichaMecanicaDAOImpl
+			class SegurosDAOImpl
 		}
 
 		EmpleadoDAOImpl -up-> ConexionSQLite 
 		ClienteDAOImpl -up-> ConexionSQLite
 		TurnoDAOImpl -up-> ConexionSQLite 
+		FichaMecanicaDAOImpl -up-> ConexionSQLite 
+		SegurosDAOImpl -up-> ConexionSQLite 
+
 		EmpleadoDAOImpl ..|> EmpleadoDAO
 		ClienteDAOImpl ..|> ClienteDAO
 		TurnoDAOImpl ..|> TurnoDAO
+		FichaMecanicaDAOImpl  ..|> FichaMecanicaDAO
+		SegurosDAOImpl  ..|> SegurosDAO
+
+
 		SqlFabricaDAO -up-|> FabricaDAO
 		SqlFabricaDAO ..> EmpleadoDAOImpl
 		SqlFabricaDAO ..> TurnoDAOImpl
 		SqlFabricaDAO ..> ClienteDAOImpl
+		SqlFabricaDAO ..> FichaMecanicaDAOImpl
+		SqlFabricaDAO ..> SegurosDAOImpl
 
+	}
 
+	package "Factory Method Controlador"{
+		abstract class ControladorFactoryMethod
+		class ControladorFactory
 	}
 }
 
-
-
 GestorGeneral ..> FabricaDAO : <<usa>>
-GestorGeneral.. Empleado
+GestorGeneral .. Empleado
 GestorGeneral .. Cliente
 GestorGeneral ..> ClienteDAO
 GestorGeneral ..> EmpleadoDAO
 GestorGeneral ..> TurnoDAO
+GestorGeneral ..> FichaMecanicaDAO
+GestorGeneral ..> SegurosDAO
 
-'Relaciones
 'Controlador
-Controlador <|-- ControladorImplHome
+Controlador <|-right- ControladorImplHome
 Controlador <|-- ControladorImplBuscarUsuario
 Controlador <|-right- ControladorImplRegistrarTurnoBD
 Controlador <|-- ControladorImplRegistrarEntregaBD
-
-ControladorImplRegistrarEntregaBD ..> GestorGeneral : <<usa>>
-ControladorImplRegistrarTurnoBD ..> GestorGeneral : <<usa>>
-ControladorImplBuscarUsuario ..> GestorGeneral : <<usa>>
+Controlador <|-- ControladorImplInformeDiario
+Controlador <|-right- ControladorImplRegistrarCliente
+Controlador <|-- ControladorActualizarFicha
+Controlador <|-right- ControladorImplInformeMensual
 
 Controlador ..> Modelo : <<manipula>>
 Controlador ..> InterfazVista : <<actualiza>>
+
+'ControladorFactory
+ControladorFactory -left-|> ControladorFactoryMethod
+ControladorFactory ..> ControladorActualizarFicha: <<instancia>>
+ControladorFactory ..>  ControladorImplBuscarUsuario : <<instancia>>
+ControladorFactory ..> ControladorImplHome : <<instancia>>
+ControladorFactory ..> ControladorImplInformeDiario : <<instancia>>
+ControladorFactory ..> ControladorImplInformeMensual : <<instancia>>
+ControladorFactory ..> ControladorImplRegistrarCliente : <<instancia>>
+ControladorFactory ..> ControladorImplRegistrarEntregaBD : <<instancia>>
+ControladorFactory ..> ControladorImplRegistrarTurnoBD : <<instancia>>
+
+'GestorGeneral
+Controlador..> GestorGeneral : <<usa>>
 
 'Main
 AplicacionMVC .left.> Controlador : <<usa>>
 
 'Interfaz
 InterfazVista ..> Controlador
-VistaHome ..|> InterfazVista
-VistaTurno ..|> InterfazVista
+VistaHome .left.|> InterfazVista
+VistaTurno .left.|>  InterfazVista
 VistaRegistroTurno ..|> InterfazVista
-VistaEntrega ..|> InterfazVista
+VistaRegEntrega ..|> InterfazVista
+VistaRegCliente ..|> InterfazVista
+VistaFichaMecanica .right.|>  InterfazVista
+VistaInformeDiario .right.|> InterfazVista
+VistaInformeMensual ..|> InterfazVista
+
 
 @enduml

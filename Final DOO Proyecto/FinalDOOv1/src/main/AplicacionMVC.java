@@ -6,7 +6,7 @@
 package main;
 
 import controlador.Controlador;
-import controlador.ControladorFactory;
+import modeloFactoryControlador.ControladorFactory;
 import modelo.Modelo;
 import vista.VistaHome;
 import vista.InterfazVista;

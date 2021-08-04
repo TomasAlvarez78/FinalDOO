@@ -4,8 +4,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador;
+package modeloFactoryControlador;
 
+import controlador.Controlador;
+import controlador.ControladorImplActualizarFicha;
+import controlador.ControladorImplBuscarUsuario;
+import controlador.ControladorImplHome;
+import controlador.ControladorImplInformeDiario;
+import controlador.ControladorImplInformeMensual;
+import controlador.ControladorImplRegistrarCliente;
+import controlador.ControladorImplRegistrarEntregaBD;
+import controlador.ControladorImplRegistrarTurnoBD;
 import modelo.Modelo;
 import vista.InterfazVista;
 

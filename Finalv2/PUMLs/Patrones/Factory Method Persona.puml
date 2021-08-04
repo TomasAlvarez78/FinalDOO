@@ -1,0 +1,32 @@
+@startuml Factory Method
+	package "Factory Method Persona"{
+		abstract class Persona
+		abstract class Empleado
+		abstract class PersonaFactoryMethod{
+			+ crearPersona( id )
+		}
+
+		' Implementacion
+		' 1 - Cliente
+		' 2 - Empleado
+		' 3 - Mecanico
+
+		class PersonaFactory
+		class Cliente
+		class Mecanico
+		class Oficinista
+
+		PersonaFactory -left-|> PersonaFactoryMethod
+		PersonaFactory ..> Cliente : <<instancia>>
+		PersonaFactory ..> Mecanico : <<instancia>>
+		PersonaFactory ..> Oficinista : <<instancia>>
+		Cliente --|> Persona
+		Empleado -left-|> Persona
+
+		Mecanico --|> Empleado
+		Oficinista --|> Empleado
+	}
+
+
+
+@enduml

@@ -92,6 +92,11 @@ public class PersonaTest {
         public String getTipo() {
             return "";
         }
+
+        @Override
+        public int getEspecialidad() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
     }
     
 }

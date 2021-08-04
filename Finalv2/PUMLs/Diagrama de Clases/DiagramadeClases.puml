@@ -4,14 +4,6 @@ package Empresa{
     'hide empty methods
     Class Empresa{
         -nombre_empresa: string
-        -areas: List<Area>
-    }
-
-    Class Area{
-        -jefe: Empleado
-        -codigo:int
-        -nombre:string
-        -empleados:List<empleado>
     }
 
     Abstract Class Persona{
@@ -32,13 +24,8 @@ package Empresa{
         -nombre: String
         -marca: String
         -patente: String
-        -nroPoliza: Poliza
     }
     
-    Class Poliza {
-        -nro: int
-        -aseguradora: CompaniaSeguros
-    }
 
     Class CompaniaSeguros{
         -razónSocial: string
@@ -67,30 +54,6 @@ package Empresa{
         -vehiculos: list<Vehiculos>
     }
 
-    Class Direccion{
-        -calle: String
-        -numero: Int
-        -localidad: Localidad
-    }
-
-    Class Localidad{
-        -nombre: String
-        -ciudad: Ciudad
-    }
-
-    Class Ciudad{
-        -nombre: String
-        -pais: Pais
-    }
-
-    Class Pais{
-        -nombre: String
-    }
-
-    Class Telefono{
-        -numero: Int
-        -caracteristica: Int
-    }    
 
     Class Turno{
        -diayHora: Date
@@ -124,17 +87,10 @@ package Empresa{
     
     'Relaciones
     
-    Empresa "1" *-- "0-n" Area
     Empresa o-- Cliente
 
-    Area "1" *-- "0-n" Empleado
-
     Persona "1" --> "1-n" Turno
-    Persona --> "1-n" Direccion
-    Persona --> "1-n" Telefono
     
-    Vehiculo "1 "-- "1" Poliza
-    Poliza "1 "-->"1 " CompaniaSeguros
     
     Cliente "1" -->"1-n" Vehiculo
     Cliente --|> Persona
@@ -150,9 +106,6 @@ package Empresa{
     FichaMecanica "1" --> "1" Cliente
     
     Agenda "1" *-- "0-n" Turno
-    Direccion "0-n" --> "1" Localidad
-    Localidad "0-n" -right-> "1" Ciudad
-    Ciudad "0-n" -right-> "1" Pais
 
 }
 @enduml

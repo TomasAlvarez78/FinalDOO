@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador;
+package modeloFactoryControlador;
 
+import controlador.Controlador;
 import controlador.Controlador;
 import vista.InterfazVista;
 import modelo.Modelo;

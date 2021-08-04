@@ -1,34 +1,42 @@
 @startuml PatronDAO
-abstract class dao.FabricaDAO
+package "DAO" <<Database>>{
+		package "FabricaDAO"{
+			interface EmpleadoDAO
+			interface ClienteDAO
+			interface TurnoDAO
+			interface FichaMecanicaDAO
+			interface SegurosDAO
 
-class dao.ClienteDAOImpl
-class dao.EmpleadoDAOImpl
-class dao.TurnoDAOImpl
-class dao.ConexionSQLite
-class dao.SqlFabricaDAO
-class main.ComponenteNegocio
-class main.Main
-interface dao.EmpleadoDAO
-interface dao.ClienteDAO
-interface dao.TurnoDAO
+			abstract class FabricaDAO
+
+			class ClienteDAOImpl
+			class EmpleadoDAOImpl
+			class TurnoDAOImpl
+			class ConexionSQLite
+			class SqlFabricaDAO
+			class FichaMecanicaDAOImpl
+			class SegurosDAOImpl
+		}
+
+		EmpleadoDAOImpl -up-> ConexionSQLite 
+		ClienteDAOImpl -up-> ConexionSQLite
+		TurnoDAOImpl -up-> ConexionSQLite 
+		FichaMecanicaDAOImpl -up-> ConexionSQLite 
+		SegurosDAOImpl -up-> ConexionSQLite 
+
+		EmpleadoDAOImpl ..|> EmpleadoDAO
+		ClienteDAOImpl ..|> ClienteDAO
+		TurnoDAOImpl ..|> TurnoDAO
+		FichaMecanicaDAOImpl  ..|> FichaMecanicaDAO
+		SegurosDAOImpl  ..|> SegurosDAO
 
 
-main.Main -> main.ComponenteNegocio
-dao.EmpleadoDAOImpl -down-> dao.ConexionSQLite 
-dao.ClienteDAOImpl -down-> dao.ConexionSQLite
-dao.TurnoDAOImpl -down-> dao.ConexionSQLite
-dao.EmpleadoDAOImpl ..|> dao.EmpleadoDAO
-dao.ClienteDAOImpl ..|> dao.ClienteDAO
-dao.TurnoDAOImpl ..|> dao.TurnoDAO
-dao.SqlFabricaDAO -up-|> dao.FabricaDAO
-dao.SqlFabricaDAO ..> dao.EmpleadoDAOImpl
-dao.SqlFabricaDAO ..> dao.ClienteDAOImpl
-dao.SqlFabricaDAO ..> dao.TurnoDAOImpl
-main.ComponenteNegocio ..> dao.FabricaDAO
-main.ComponenteNegocio .. dto.EmpleadoDTO
-main.ComponenteNegocio .. dto.ClienteDTO
-main.ComponenteNegocio .. dto.TurnoDTO
-main.ComponenteNegocio ..> dao.ClienteDAO
-main.ComponenteNegocio ..> dao.TurnoDAO
-main.ComponenteNegocio ..> dao.EmpleadoDAO
+		SqlFabricaDAO -up-|> FabricaDAO
+		SqlFabricaDAO ..> EmpleadoDAOImpl
+		SqlFabricaDAO ..> TurnoDAOImpl
+		SqlFabricaDAO ..> ClienteDAOImpl
+		SqlFabricaDAO ..> FichaMecanicaDAOImpl
+		SqlFabricaDAO ..> SegurosDAOImpl
+
+	}
 @enduml

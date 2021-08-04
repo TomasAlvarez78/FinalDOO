@@ -1,0 +1,15 @@
+package "Factory Method Controlador"{
+		abstract class ControladorFactoryMethod
+		class ControladorFactory
+}
+
+'ControladorFactory
+ControladorFactory -left-|> ControladorFactoryMethod
+ControladorFactory .left.> ControladorActualizarFicha: <<instancia>>
+ControladorFactory .left.>  ControladorImplBuscarUsuario : <<instancia>>
+ControladorFactory ..> ControladorImplHome : <<instancia>>
+ControladorFactory ..> ControladorImplInformeDiario : <<instancia>>
+ControladorFactory ..> ControladorImplInformeMensual : <<instancia>>
+ControladorFactory ..>ControladorImplRegistrarCliente : <<instancia>>
+ControladorFactory .right.> ControladorImplRegistrarEntregaBD : <<instancia>>
+ControladorFactory .right.> ControladorImplRegistrarTurnoBD : <<instancia>>
