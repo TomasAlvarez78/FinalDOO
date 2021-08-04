@@ -21,8 +21,10 @@ import vista.VistaRegistroTurno;
 public class ControladorImplBuscarUsuario extends Controlador {
     
     private Cliente cliente;
+    ControladorFactory factory;
     
     public ControladorImplBuscarUsuario(InterfazVista vista, Modelo modelo) {
+        factory = new ControladorFactory();
         vistaTurno = vista;
         MODELO = modelo;
     }
@@ -42,14 +44,14 @@ public class ControladorImplBuscarUsuario extends Controlador {
                     break;
                 case SIGUIENTE:
                     vistaRegTurno = new VistaRegistroTurno();
-                    Controlador controladorImplRegistrarBD = new ControladorImplRegistrarTurnoBD(vistaRegTurno,this.MODELO);
+                    Controlador controladorImplRegistrarBD = factory.crearControlador(6,vistaRegTurno,this.MODELO);
                     controladorImplRegistrarBD.setCliente(cliente);
                     vistaRegTurno.setControlador(controladorImplRegistrarBD);
                     vistaRegTurno.iniciaVista();
                     break;
                 case REGISTRARCLIENTE:
                     vistaRegCliente = new VistaRegistroCliente();
-                    Controlador controladorImplRegistrarCliente = new ControladorImplRegistrarCliente(vistaRegCliente,this.MODELO);
+                    Controlador controladorImplRegistrarCliente = factory.crearControlador(7,vistaRegCliente,this.MODELO);
                     vistaRegCliente.setControlador(controladorImplRegistrarCliente);
                     vistaRegCliente.iniciaVista();
                     break;

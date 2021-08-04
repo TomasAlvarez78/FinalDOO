@@ -26,11 +26,5 @@ public class PersonaFactory extends PersonaFactoryMethod{
             default:
                 return null;
         }
-
-//        if(idCreacion == 1) return new Cliente(nombre,apellido,edad);
-//        if(idCreacion == 2) return new Empleado(nombre,apellido,edad);
-//        if(idCreacion == 3) return new Mecanico(nombre,apellido,edad);
-//        return null;
-        
     }
 }

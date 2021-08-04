@@ -180,7 +180,7 @@ public class VistaEntrega extends javax.swing.JFrame implements InterfazVista{
 
     @Override
     public void imprimeError(Exception e) {
-         JOptionPane.showMessageDialog(this, "Ocurrio una excepción: " + e.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Ocurrio una excepción: " + e.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override

@@ -158,8 +158,6 @@ public class FichaMecanicaDAOImpl implements FichaMecanicaDAO{
 
     @Override
     public boolean actFicha(FichaMecanica ficha, int fichaId) {
-        
-        
         Connection con = null;
         PreparedStatement sentencia = null;
         try {

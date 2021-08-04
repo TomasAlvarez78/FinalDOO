@@ -22,39 +22,39 @@ import vista.VistaTurno;
  */
 public class ControladorImplHome extends Controlador{
 
+    ControladorFactory factory;
+       
     public ControladorImplHome(InterfazVista vista, Modelo modelo) {
+        factory = new ControladorFactory();
         vistaHome = vista;
         MODELO = modelo;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("boton");
         try {
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case REGISTRARTURNO:
                     vistaTurno = new VistaTurno();
-                    Controlador controladorImplBuscarUsuario = new ControladorImplBuscarUsuario(vistaTurno,this.MODELO);
+                    Controlador controladorImplBuscarUsuario = factory.crearControlador(2,vistaTurno,this.MODELO);
                     vistaTurno.setControlador(controladorImplBuscarUsuario);
                     vistaTurno.iniciaVista();
-                    //Para evitar de abrir muchos vistaTurno
-                    //vistaHome.setVisible();
                     break;
                 case REGISTRARENTREGA:
                     vistaRegEntrega = new VistaEntrega();
-                    Controlador controladorImplRegistrarEntrega = new ControladorImplRegistrarEntregaBD(vistaRegEntrega,this.MODELO);
+                    Controlador controladorImplRegistrarEntrega = factory.crearControlador(3,vistaRegEntrega,this.MODELO);
                     vistaRegEntrega.setControlador(controladorImplRegistrarEntrega);
                     vistaRegEntrega.iniciaVista();
                     break;
                 case ACTUALIZARFICHAMECANICA:
                     vistaFichaMecanica = new VistaFichaMecanica();
-                    Controlador controladorImplActualizarFicha = new ControladorImplActualizarFicha(vistaFichaMecanica,this.MODELO);
+                    Controlador controladorImplActualizarFicha = factory.crearControlador(4,vistaFichaMecanica,this.MODELO);
                     vistaFichaMecanica.setControlador(controladorImplActualizarFicha);
                     vistaFichaMecanica.iniciaVista();
                     break;
                 case GENERARDIARIO:
                     vistaInformeDiario = new VistaInformeDiario();
-                    Controlador controladorImplInformeDiario = new ControladorImplInformeDiario(vistaInformeDiario,this.MODELO);
+                    Controlador controladorImplInformeDiario = factory.crearControlador(5,vistaInformeDiario,this.MODELO);
                     vistaInformeDiario.setControlador(controladorImplInformeDiario);
                     vistaInformeDiario.iniciaVista();
                     break;

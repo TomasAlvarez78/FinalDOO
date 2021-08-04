@@ -406,7 +406,7 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
 
     @Override
     public void imprimeError(Exception e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JOptionPane.showMessageDialog(this, "Ocurrio una excepción: " + e.getMessage(), "Información", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override

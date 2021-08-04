@@ -36,7 +36,6 @@ public class ControladorImplRegistrarCliente extends Controlador{
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            System.out.println("Aprete un boton");
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case REGISTRARCLIENTEBD:
                     Cliente cliente = vistaRegCliente.getCliente();
@@ -59,7 +58,7 @@ public class ControladorImplRegistrarCliente extends Controlador{
                     break;
             }
         } catch (NumberFormatException ex) {
-            vistaRegEntrega.imprimeError(ex);
+            vistaRegCliente.imprimeError(ex);
         }
     }
 
