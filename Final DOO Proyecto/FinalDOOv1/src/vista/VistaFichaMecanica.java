@@ -426,7 +426,7 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
         }
         switch(f.isConformidad()){
             case 0:
-                this.checkConformidadFalse.setSelected(false);
+                this.checkConformidadFalse.setSelected(true);
                 break;
             case 1:
                 this.checkConformidadTrue.setSelected(true);
@@ -437,12 +437,12 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
             int fila = 0;
             int columna = 0;
             for(String linea : lineas){
-                this.table.setValueAt(linea,fila,columna );
-                if(columna == 3){
+                this.table.setValueAt(linea,fila,columna);
+                columna++;
+                if(columna == 4){
                     columna = 0;
                     fila++;
                 }
-                columna++;
             }
         }
         if(f.getFechayHora() != null){
@@ -506,13 +506,37 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
         this.checkConformidadFalse.setEnabled(estado);
         this.checkConformidadTrue.setEnabled(estado);
         this.table.setEnabled(estado);
+        this.btnGuardar.setEnabled(estado);
     }
+    
     @Override
     public String getString(){
-       String stringTemp = "";
-       
-       return stringTemp;
-       
+        String stringTemp = "";
+        stringTemp += this.txtDescripcion.getText() + ";";
+        stringTemp += this.txtTiempo.getText() + ";";
+        if(this.datePicker1.getText().length() > 1){
+            stringTemp += this.datePicker1.getText() + ";";
+        }else{
+            stringTemp += "null;";
+        }
+        if(this.checkConformidadTrue.isSelected() == true){
+             stringTemp += "1;";
+        }else if (this.checkConformidadFalse.isSelected() == true){
+            stringTemp += "0;";
+        }else{
+             stringTemp += "2;";
+        }
+        int rows = this.table.getRowCount();
+        int column = this.table.getColumnCount();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < column; j++) {
+                String temp = this.table.getValueAt(i, j).toString();
+                if(temp.length() > 0){
+                    stringTemp += temp + ";";
+                }
+            }
+        }
+        return stringTemp;
     }
     
     @Override
@@ -523,19 +547,33 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
         if(this.txtTiempo.getText().length() < 1){
             return 3;
         }
-        if(this.datePicker1.getText() == null){
-            return 4;
-        }
-        if(this.checkConformidadTrue.isSelected() == false && this.checkConformidadFalse.isSelected() == false){
-            return 5;
+//        if(this.datePicker1.getText().length() < 1){
+//            return 4;
+//        }
+        if(this.datePicker1.getText().length() > 1){
+            if(this.checkConformidadTrue.isSelected() == false && this.checkConformidadFalse.isSelected() == false){
+                return 5;
+            }
         }
         int rows = this.table.getRowCount();
         int column = this.table.getColumnCount();
+        int contador = 0;
+        String temp= "";
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < column; j++) {
-                
+                try{
+                    temp = this.table.getValueAt(i, j).toString();
+                }catch(Exception ex){
+                    return 6;
+                }
+                if(temp.length() > 0){
+                    contador++;
+                }
             }
-            
+            if(contador != 0 && contador != 4){
+                return 6;
+            }
+            contador = 0;
         }
        return 1;
     }

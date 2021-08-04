@@ -8,7 +8,6 @@ package controlador;
 import clases.FichaMecanica;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.HashSet;
 import main.GestorGeneral;
 import modelo.Modelo;
 import modeloFactoryPersona.Cliente;
@@ -22,11 +21,15 @@ import vista.InterfazVista;
 public class ControladorImplActualizarFicha extends Controlador {
     
     FichaMecanica fichaMecanica;
+    GestorGeneral objeto;
+    int fichaId;
+    int turnoId;
     
     public ControladorImplActualizarFicha(InterfazVista vista, Modelo modelo) {
         vistaFichaMecanica = vista;
         MODELO = modelo;
         fichaMecanica = new FichaMecanica();
+        objeto = new GestorGeneral();
     }
 
     @Override
@@ -42,9 +45,7 @@ public class ControladorImplActualizarFicha extends Controlador {
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case BUSCARFICHA:
                     String ficha = vistaFichaMecanica.getTicket();
-                    int fichaId;
-                    int turnoId;
-                    GestorGeneral objeto = new GestorGeneral();
+                    
                     try{
                         fichaId = Integer.parseInt(ficha);
                     }catch(NumberFormatException ex){
@@ -72,8 +73,55 @@ public class ControladorImplActualizarFicha extends Controlador {
                     }
                     break;
                 case GUARDAR:
-                    //int estado = vistaFichaMecanica.
-                    
+                    int estado = vistaFichaMecanica.getEstado();
+                    switch(estado){
+                        case 1:
+                            String temp = vistaFichaMecanica.getString();
+                            System.out.println(temp);
+                            String [] datosFicha = temp.split(";");
+                            fichaMecanica.setDescripcion(datosFicha[0]);
+                            fichaMecanica.setTiempoEmpleado(Integer.parseInt(datosFicha[1]));
+                            if(!"null".equals(datosFicha[2])){
+                                fichaMecanica.setFechayHora(datosFicha[2]);
+                                fichaMecanica.setConformidad(Integer.parseInt(datosFicha[3]));
+                            }else{
+                                fichaMecanica.setConformidad(2);
+                            }
+                            int longi = datosFicha.length;
+                            String temp2 = "";
+                            for (int i = 4; i < longi; i++) {
+                                if(i != longi-1){
+                                    temp2 += datosFicha[i] + ";";
+                                }else{
+                                    temp2 += datosFicha[i];
+                                }
+                            }
+                            fichaMecanica.setGastos(temp2);
+                            boolean estado2 = objeto.actFicha(fichaMecanica,fichaId);
+                            if(estado2 == true){
+                                if(fichaMecanica.getFechayHora().length() > 3){
+                                    objeto.cambiarEstado(turnoId, 7);
+                                }
+                                vistaFichaMecanica.imprimeResultado("Guardado correctamente");
+                            }
+                            break;
+                        case 2:
+                            vistaFichaMecanica.imprimeResultado("La descripcion no es suficientemente detallada.");
+                            break;
+                        case 3:
+                            vistaFichaMecanica.imprimeResultado("No cargo el tiempo empleado");
+                            break;
+                        case 4:
+                            vistaFichaMecanica.imprimeResultado("No cargo la fecha de salida");
+                            break;
+                        case 5:
+                            vistaFichaMecanica.imprimeResultado("No selecciono la conformidad");
+                            break;
+                        case 6:
+                            vistaFichaMecanica.imprimeResultado("La tabla se lleno incorrectamente");
+                            break;
+                    }
+                    System.out.println("Estado: " + estado);
                     break;                            
             }
         } catch (Exception ex) {

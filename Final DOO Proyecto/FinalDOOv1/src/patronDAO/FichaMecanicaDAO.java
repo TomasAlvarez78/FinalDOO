@@ -20,6 +20,10 @@ public interface FichaMecanicaDAO {
     
     List <FichaMecanica> listarFichasMensual(Date fecha);
     
+    boolean actFicha(FichaMecanica ficha, int fichaId);
+    
+    List <String> infDiario(int especialidadId, String fecha);
+    
     boolean agregarFicha(int idTurno);
     
     boolean borrarFicha(int id);

@@ -182,5 +182,12 @@ public class GestorGeneral {
         return fichaMecanicaDao.getFichaId(fichaId);
     }
     
+    public boolean actFicha(FichaMecanica ficha, int fichaId){
+        return fichaMecanicaDao.actFicha(ficha, fichaId);
+    }
+    
+    public List <String> infDiario(int especialidadId, String fecha){
+        return fichaMecanicaDao.infDiario(especialidadId, fecha);
+    }
     
 }

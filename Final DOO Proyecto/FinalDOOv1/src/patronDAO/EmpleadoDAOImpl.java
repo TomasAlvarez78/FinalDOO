@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import modeloFactoryPersona.Empleado;
 import modeloFactoryPersona.Oficinista;
 import modeloFactoryPersona.Mecanico;
+import modeloFactoryPersona.PersonaFactory;
 
 /**
  *
@@ -28,9 +29,11 @@ import modeloFactoryPersona.Mecanico;
 public class EmpleadoDAOImpl implements EmpleadoDAO {
     
     private ConexionSql conexion = null;
+    PersonaFactory factory;
     
     public EmpleadoDAOImpl() {
         conexion = ConexionSql.getInstancia();
+        factory = new PersonaFactory();
     }
 
     @Override
@@ -69,10 +72,13 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
                 turno = rs.getString("turno");
                 if(tipoEmpleado == 0){
                     //Es oficinista
-                    empleado = new Oficinista(dniEmp,nombre, apellido, fechaNacimiento, sexo);
+                    //empleado = new Oficinista(dniEmp,nombre, apellido, fechaNacimiento, sexo);
+                    empleado = (Empleado)factory.crearPersona(dniEmp,nombre,apellido,fechaNacimiento,sexo,0,"","",0,2);
+                    //int dni,String nombre, String apellido, Date fechaNacimiento,String sexo,int especialidad,String turno,String auto,int companiaSeguro,int idCreacion
                 }else{
                     //Es mecanico
-                    empleado = new Mecanico(dniEmp,nombre, apellido, fechaNacimiento, sexo,especialidad,turno);
+                    //empleado = new Mecanico(dniEmp,nombre, apellido, fechaNacimiento, sexo,especialidad,turno);
+                    empleado = (Empleado)factory.crearPersona(dniEmp,nombre,apellido,fechaNacimiento,sexo,especialidad,turno,"",0,3);
                 }
                 
             }

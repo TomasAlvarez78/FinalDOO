@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import modeloFactoryPersona.Cliente;
+import modeloFactoryPersona.Persona;
+import modeloFactoryPersona.PersonaFactory;
 /**
  *
  * @author cirkuit
@@ -21,9 +23,11 @@ import modeloFactoryPersona.Cliente;
 public class ClienteDAOImpl implements ClienteDAO{
     
     private ConexionSql conexion = null;
+    PersonaFactory factory;
     
     public ClienteDAOImpl() {
         conexion = ConexionSql.getInstancia();
+        factory = new PersonaFactory();
     }
 
     @Override
@@ -58,7 +62,8 @@ public class ClienteDAOImpl implements ClienteDAO{
                 sexo = rs.getString("sexo");
                 auto = rs.getString("auto");
                 companiaSeguro = rs.getInt("companiaSeguroCuit");
-                cliente = new Cliente(dniCli,nombre, apellido, fechaNacimiento, sexo,auto,companiaSeguro);
+                //cliente = new Cliente(dniCli,nombre, apellido, fechaNacimiento, sexo,auto,companiaSeguro);
+                cliente = (Cliente)factory.crearPersona(dniCli,nombre,apellido,fechaNacimiento,sexo,0,"",auto,companiaSeguro,1);
             }
             
         }catch (SQLException | ParseException e) {
@@ -106,7 +111,8 @@ public class ClienteDAOImpl implements ClienteDAO{
                 sexo = rs.getString("sexo");
                 auto = rs.getString("auto");
                 companiaSeguro = rs.getInt("companiaSeguroCuit");
-                cliente = new Cliente(dniCli,nombre, apellido, fechaNacimiento, sexo,auto,companiaSeguro);
+                //cliente = new Cliente(dniCli,nombre, apellido, fechaNacimiento, sexo,auto,companiaSeguro);
+                cliente = (Cliente)factory.crearPersona(dniCli,nombre,apellido,fechaNacimiento,sexo,0,"",auto,companiaSeguro,1);
             }
             
         }catch (SQLException | ParseException e) {
@@ -213,7 +219,8 @@ public class ClienteDAOImpl implements ClienteDAO{
                 sexo = rs.getString("sexo");
                 auto = rs.getString("auto");
                 companiaSeguro = rs.getInt("companiaSeguroCuit");
-                cliente = new Cliente(dniCli,nombre, apellido, fechaNacimiento, sexo,auto,companiaSeguro);
+                //cliente = new Cliente(dniCli,nombre, apellido, fechaNacimiento, sexo,auto,companiaSeguro);
+                cliente = (Cliente)factory.crearPersona(dniCli,nombre,apellido,fechaNacimiento,sexo,0,"",auto,companiaSeguro,1);
             }
             
         }catch (SQLException | ParseException e) {

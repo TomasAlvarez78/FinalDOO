@@ -13,6 +13,7 @@ import modelo.Modelo;
 import modeloFactoryPersona.Cliente;
 import prototipovistas.VistaFichaMecanica;
 import vista.VistaEntrega;
+import vista.VistaInformeDiario;
 import vista.VistaTurno;
 
 /**
@@ -50,6 +51,12 @@ public class ControladorImplHome extends Controlador{
                     Controlador controladorImplActualizarFicha = new ControladorImplActualizarFicha(vistaFichaMecanica,this.MODELO);
                     vistaFichaMecanica.setControlador(controladorImplActualizarFicha);
                     vistaFichaMecanica.iniciaVista();
+                    break;
+                case GENERARDIARIO:
+                    vistaInformeDiario = new VistaInformeDiario();
+                    Controlador controladorImplInformeDiario = new ControladorImplInformeDiario(vistaInformeDiario,this.MODELO);
+                    vistaInformeDiario.setControlador(controladorImplInformeDiario);
+                    vistaInformeDiario.iniciaVista();
                     break;
             }
         } catch (Exception ex) {

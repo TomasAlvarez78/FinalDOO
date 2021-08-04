@@ -279,8 +279,6 @@ public class VistaRegistroTurno extends javax.swing.JFrame implements InterfazVi
         }
         
     }
-    
-    
     @Override
     public void setEnable(boolean estado){
         cBoxMecanicos.setEnabled(estado);
