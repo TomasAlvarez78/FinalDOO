@@ -1,0 +1,179 @@
+@startuml Empresa
+package Empresa{
+
+    'hide empty methods
+    Class Empresa{
+        -nombre_empresa: string
+        -areas: List<Area>
+    }
+
+    Class Area{
+        -jefe: Empleado
+        -codigo:int
+        -nombre:string
+        -empleados:List<empleado>
+    }
+
+    Abstract Class Persona{
+        -nombre: String
+        -apellido: String
+        -tipoDni: String
+        -dni: String
+        -direccion: Direccion
+        -telefono: Telefono
+        'Responsabilidades
+        + crearPersona()
+    }
+
+    Class Empleado{
+        -jefe: Empleado
+        -datosEmpleado: Persona
+        -legajo:int
+    }
+
+    Class Vehiculo {
+        -nombre: String
+        -marca: String
+        -patente: String
+        -dueño: Persona
+        -nroPoliza: Poliza
+    }
+
+    Class Poliza {
+        -nro: int
+        -aseguradora: CompaniaSeguros
+    }
+
+    Class CompaniaSeguros{
+        -razónSocial: string
+        -cuit: int
+    }
+
+    Class Mecanico{
+        -datosMecanico: Persona
+        -especialidad: Especialidad
+        -turno: string
+    } 
+
+    Class Especialidad{
+        -id: int
+        -nombre: String
+    }
+
+    'Hija de Persona
+    Class Cliente{
+        -nroCliente: Int
+        -datosPersonales: Persona
+        -vehiculos: list<Vehiculos>
+    }
+
+    Class Direccion{
+        -calle: String
+        -numero: Int
+        -localidad: Localidad
+    }
+
+    Class Localidad{
+        -nombre: String
+        -ciudad: Ciudad
+    }
+
+    Class Ciudad{
+        -nombre: String
+        -pais: Pais
+    }
+
+    Class Pais{
+        -nombre: String
+    }
+
+    Class Telefono{
+        -numero: Int
+        -caracteristica: Int
+    }    
+
+    Class Turno{
+       -diaSolicitado: date
+       -horaSolicitado: int
+       -mecanicoDisponible: Mecanico
+       -personalTelefonica: bool
+       -datosPersonales: Persona
+       -vehiculo: Vehiculo
+       -estado: bool
+       + revisarAgenda()
+       + asignarTurno()
+    }
+
+
+    Class Agenda{
+       '-mes:int
+       -anio:int
+       -mecanico:Mecanico
+       -horarioSolicitado : List<Turno>
+    }
+
+
+    Class FichaTecnica{
+        -mecanico: Mecanico
+        -cliente: Cliente
+        -descripcion: string
+        -dia: date
+        -tiempoDemorado:int
+        -conformidad: bool
+    }
+    
+    'Relaciones
+    
+    Empresa "1" *-- "0-n" Area
+    Empresa o-- Cliente
+
+    Area "1" *-- "0-n" Empleado
+
+    Persona "1" --> "1-n" Turno
+    Persona --> "1-n" Direccion
+    Persona --> "1-n" Telefono
+
+    Vehiculo "1 "-- "1" Poliza
+    Poliza "1 "-->"1 " CompaniaSeguros
+    
+    Cliente "1" -->"1-n" Vehiculo
+    Cliente --|> Persona
+    
+    Empleado --> Empleado
+    Empleado --|> Persona
+    
+    Mecanico " 1" --> " 1-n" Especialidad
+    Mecanico --|> Persona
+    
+    FichaTecnica "1" --> "1" Mecanico
+    FichaTecnica "1" --> "1" Cliente
+    
+    Agenda "1" *-- "0-n" Turno
+    Direccion "0-n" --> "1" Localidad
+    Localidad "0-n" -right-> "1" Ciudad
+    Ciudad "0-n" -right-> "1" Pais
+
+}
+@enduml
+
+'===========Ticket===========
+'Ticket "0-n" --> "1" Persona
+' Class Ticket{
+'    -dia: date
+'    -hora: int
+'    -mecanico: Mecanico
+'    -datosPersonales: Persona
+' }
+'============================
+
+
+' Agregar metodos
+' Ver fachada despues de agregar todos los metodos
+
+
+' Puede ser agenda un singleton? Si
+' Ver si DAO
+
+' Factory Method para derivados de Persona (Mecanico, Empleado, Cliente)
+
+' Singleton ListadePaises o Ciudad o Localidad? Vamos a ver jeje

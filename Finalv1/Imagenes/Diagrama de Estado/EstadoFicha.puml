@@ -1,0 +1,7 @@
+@startuml
+(*)--> [crearFicha()] CreadoParcial
+--> [asignarInformacion()] Asignado
+--> [ingresoMecanico()] Completado
+--> [asignarFirmar()] Confirmado
+--> (*)
+@enduml

@@ -1,0 +1,19 @@
+Cambiamos
+-EstadoTurno.puml
+-RegistrarTurno.puml
+-CasoDeUso.vpd y jpg
+-UMLTPFinalv2.puml
+
+
+
+11-06
+
+Hicimos que la agenda de cada mecanico sea anual, y no semestral
+
+
+
+Anotacion:
+
+Empleados:
+	mecanicos
+	encargado de recepcion
