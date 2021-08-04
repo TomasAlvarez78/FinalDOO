@@ -56,8 +56,6 @@ package Empresa{
     
     'Relaciones
     
-    Empresa o-- Cliente
-
     Persona "1" --> "1-n" Turno
     
     Cliente --|> Persona
