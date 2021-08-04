@@ -7,13 +7,13 @@ Orden de explicacion
 4 - Explicacion MVC de codigo -- Tomi	
 5 - Test -- Martin
 
-1 - Pablo-Informe (general) - Use Case 
+1 - Pablo - Informe (general) - Use Case 
 
 4 - Tomi : Diagrama de clases y DiagramaBD
 
-2 - Bauti-Diagramas de clases - Modelo MVC - - vistas - gestor gral
+2 - Bauti - Diagramas de clases - Modelo MVC - main - vistas - gestor gral
 
-3 - Martin-Controladores y metodos - Test
+3 - Martin - Controladores y metodos - Test
 
 Orden:
 
@@ -21,5 +21,13 @@ Informe
 Diagrama de Clases
 Explicacion Diagrama de clases y DiagramaBD
 Use Case
-Modelo MVC
+Modelo MVC (Factories - PatronDAO)
+Saltamos al codigo
+Main
+Modelo
+InterfazVista
+Gestor General
+Controladores 
+
+Test
 
