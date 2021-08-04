@@ -114,6 +114,12 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -253,7 +259,7 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
                         .addComponent(checkConformidadFalse))
                     .addComponent(jLabel9))
                 .addGap(9, 9, 9)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
@@ -467,7 +473,7 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
     }
 
     @Override
-    public void cargarEspecialidades(List<String> lista) {
+    public void cargarLista(List<String> lista) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

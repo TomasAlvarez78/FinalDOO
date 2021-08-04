@@ -274,7 +274,7 @@ public class VistaInformeDiario extends javax.swing.JFrame implements InterfazVi
     }
 
     @Override
-    public void cargarEspecialidades(List<String> lista) {
+    public void cargarLista(List<String> lista) {
         lista.forEach(especialidad -> {
             cbxEspecialidad.addItem(especialidad);
         });

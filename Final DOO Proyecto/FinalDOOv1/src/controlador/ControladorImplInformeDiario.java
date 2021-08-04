@@ -41,7 +41,7 @@ public class ControladorImplInformeDiario extends Controlador{
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case CARGAR:
                     especialidades = objeto.listarEspecialidades();
-                    vistaInformeDiario.cargarEspecialidades(especialidades);                    
+                    vistaInformeDiario.cargarLista(especialidades);                    
                     break;
                 case GENERARDIARIO:
                     if(vistaInformeDiario.getEstado() != 0){

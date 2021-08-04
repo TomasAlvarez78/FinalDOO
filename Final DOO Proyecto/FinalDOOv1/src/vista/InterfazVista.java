@@ -38,7 +38,7 @@ public interface InterfazVista {
     void updateDatos(FichaMecanica f);
     void cargarMecanicos(List <Empleado> lista,int especialidad);
     void cargarSeguros(List <String> lista);
-    void cargarEspecialidades(List <String> lista);
+    void cargarLista(List <String> lista);
     void setEnable(boolean estado);
     
     List<Empleado> getEmpleadosLocales();

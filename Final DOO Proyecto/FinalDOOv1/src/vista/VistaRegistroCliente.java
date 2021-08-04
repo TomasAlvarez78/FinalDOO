@@ -295,7 +295,7 @@ public class VistaRegistroCliente extends javax.swing.JFrame implements Interfaz
     }
 
     @Override
-    public void cargarEspecialidades(List<String> lista) {
+    public void cargarLista(List<String> lista) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

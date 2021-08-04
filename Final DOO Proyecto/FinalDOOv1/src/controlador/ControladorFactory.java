@@ -32,7 +32,6 @@ public class ControladorFactory extends ControladorFactoryMethod{
                 return new ControladorImplRegistrarTurnoBD(vista,modelo);
             case 7:
                 return new ControladorImplRegistrarCliente(vista,modelo);
-                
         }
         return null;
     }

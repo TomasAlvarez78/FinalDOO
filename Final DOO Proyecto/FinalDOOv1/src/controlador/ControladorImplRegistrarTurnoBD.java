@@ -45,7 +45,7 @@ public class ControladorImplRegistrarTurnoBD extends Controlador{
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case CARGAR:
                     especialidades = objeto.listarEspecialidades();
-                    vistaRegTurno.cargarEspecialidades(especialidades);                    
+                    vistaRegTurno.cargarLista(especialidades);                    
                     break;
                 case ACTUALIZARMECANICOS:
                     int especialidad = vistaRegTurno.getEspecialidadId();
