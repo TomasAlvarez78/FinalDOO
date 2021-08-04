@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface SegurosDAO {
     List<String> getSeguros();
+    
 }

@@ -23,6 +23,7 @@ public abstract class Controlador implements ActionListener, KeyListener{
     InterfazVista vistaRegCliente = null;
     InterfazVista vistaFichaMecanica = null;
     InterfazVista vistaInformeDiario = null;
+    InterfazVista vistaInformeMensual = null;
     Modelo MODELO = null;
     
     public abstract void setCliente(Cliente cliente);

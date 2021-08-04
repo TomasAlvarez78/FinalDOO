@@ -9,26 +9,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import main.GestorGeneral;
+import modelo.Modelo;
 import modeloFactoryPersona.Cliente;
 import vista.InterfazVista;
-import modelo.Modelo;
-import modeloFactoryPersona.Empleado;
 
 /**
  *
  * @author cirkuit
  */
-public class ControladorImplInformeDiario extends Controlador{
-
+public class ControladorImplInformeMensual extends Controlador{
     private GestorGeneral objeto;
-    private List<String> especialidades;
+    private List<String> seguros;
     
-    public ControladorImplInformeDiario(InterfazVista vista, Modelo modelo) {
-        vistaInformeDiario= vista;
+    public ControladorImplInformeMensual(InterfazVista vista, Modelo modelo) {
+        vistaInformeMensual= vista;
         MODELO = modelo;
         objeto = new GestorGeneral();
     }
-    
     @Override
     public void setCliente(Cliente cliente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -39,23 +36,33 @@ public class ControladorImplInformeDiario extends Controlador{
         try {
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case CARGAR:
-                    especialidades = objeto.listarEspecialidades();
-                    vistaInformeDiario.cargarLista(especialidades);                    
+                    System.out.println("1");
+                    seguros = objeto.listarSeguros();
+                    System.out.println("2");
+                    vistaInformeMensual.cargarLista(seguros);                    
                     break;
-                case GENERARDIARIO:
-                    if(vistaInformeDiario.getEstado() != 0){
-                        int especialidad = vistaInformeDiario.getEspecialidadId();
-                        especialidad++;
-                        String fecha = vistaInformeDiario.getDate();
-                        List <String> infDiario = objeto.infDiario(especialidad, fecha);
-                        vistaInformeDiario.cargarSeguros(infDiario);
+                case GENERARMENSUAL:
+                    if(vistaInformeMensual.getEstado() != 0){
+                        int seguro = vistaInformeMensual.getEspecialidadId();
+                        seguro++;
+                        String fecha = vistaInformeMensual.getDate();
+                        List <String> infMensual = objeto.infMensual(seguro, fecha);
+                        if(infMensual != null){
+                            infMensual = MODELO.generarTexto(infMensual);
+                            for(String linea : infMensual){
+                                System.out.println(linea);
+                            }
+                            vistaInformeMensual.cargarSeguros(infMensual);
+                        }else{
+                            vistaInformeMensual.imprimeResultado("No se encontro trabajos completos en ese mes");
+                        }
                     }else{
-                        vistaInformeDiario.imprimeResultado("Ingreso un dato incorrectamente");
+                        vistaInformeMensual.imprimeResultado("Ingreso un dato incorrectamente");
                     }
                     break;
             }
         } catch (Exception ex) {
-            vistaInformeDiario.imprimeError(ex);
+            vistaInformeMensual.imprimeError(ex);
         }
     }
 

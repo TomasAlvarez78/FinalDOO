@@ -198,7 +198,7 @@ public class FichaMecanicaDAOImpl implements FichaMecanicaDAO{
 
     @Override
     public List <String> infDiario(int especialidadId, String fecha) {
-         Connection con = null;
+        Connection con = null;
         PreparedStatement sentencia = null;
         ResultSet rs = null;
         List <String>resultado = new ArrayList<>();
@@ -220,11 +220,6 @@ public class FichaMecanicaDAOImpl implements FichaMecanicaDAO{
             sentencia.setInt(1, especialidadId);
             sentencia.setString(2, fecha);
             
-            System.out.println(especialidadId);
-            System.out.println(fecha);
-            
-            System.out.println(sql);
-            
             rs = sentencia.executeQuery();
             
             String nombre;
@@ -232,7 +227,6 @@ public class FichaMecanicaDAOImpl implements FichaMecanicaDAO{
             int tiempoEmpleado;
                         
             while (rs.next()) {
-                System.out.println(rs.getString("nombreCompleto"));
                 nombre = rs.getString("nombreCompleto");
                 descripcion = rs.getString("descripcion");
                 tiempoEmpleado = rs.getInt("tiempoEmpleado");
@@ -250,6 +244,62 @@ public class FichaMecanicaDAOImpl implements FichaMecanicaDAO{
             }
         }
         return resultado;
+    }
+
+    @Override
+    public List<String> infMensual(int seguroId, String fecha) {
+        Connection con = null;
+        PreparedStatement sentencia = null;
+        ResultSet rs = null;
+        List <String> resultado = new ArrayList<>();
+        
+        try{
+            con = conexion.getConnection();
+            String sql = "select ct.nombre || ' ' || ct.apellido as nombreCliente,e.nombreEsp,fmt.gastos\n" +
+                            "from turnoTable tt\n" +
+                            "join clienteTable ct\n" +
+                            "on tt.clienteId = ct.id\n" +
+                            "and ct.companiaSeguroCuit = ?\n" +
+                            "join agendaTable at\n" +
+                            "on tt.agendaId = at.id\n" +
+                            "join empleadoTable et\n" +
+                            "on at.mecanicoId = et.id\n" +
+                            "join especialidad e\n" +
+                            "on et.especialidadId = e.id\n" +
+                            "join fichaMecanicaTable fmt\n" +
+                            "on fmt.idTurno = tt.id\n" +
+                            "where strftime('%m',tt.fecha) = strftime('%m',?)\n" +
+                            "and strftime('%Y',tt.fecha) = strftime('%Y',?)";
+            sentencia = con.prepareStatement(sql);
+            sentencia.setInt(1, seguroId+100);
+            sentencia.setString(2, fecha);
+            sentencia.setString(3, fecha);
+            
+            rs = sentencia.executeQuery();
+            
+            String nombre;
+            String nombreEsp;
+            String gastos;
+                        
+            while (rs.next()) {
+                nombre = rs.getString("nombreCliente");
+                nombreEsp = rs.getString("nombreEsp");
+                gastos = rs.getString("gastos");
+                resultado.add(nombre +"/"+nombreEsp + "/" + gastos);
+            }
+            
+        }catch (SQLException e) {
+            System.err.println(e);
+        }finally{
+            try {
+                rs.close();
+                sentencia.close();
+            } catch (SQLException ex) {
+                System.err.println(ex);
+            }
+        }
+        return resultado;
+
     }
     
 }

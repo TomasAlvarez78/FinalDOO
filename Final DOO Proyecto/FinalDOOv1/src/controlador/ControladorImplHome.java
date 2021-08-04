@@ -14,6 +14,7 @@ import modeloFactoryPersona.Cliente;
 import prototipovistas.VistaFichaMecanica;
 import vista.VistaEntrega;
 import vista.VistaInformeDiario;
+import vista.VistaInformeMensual;
 import vista.VistaTurno;
 
 /**
@@ -57,6 +58,12 @@ public class ControladorImplHome extends Controlador{
                     Controlador controladorImplInformeDiario = factory.crearControlador(5,vistaInformeDiario,this.MODELO);
                     vistaInformeDiario.setControlador(controladorImplInformeDiario);
                     vistaInformeDiario.iniciaVista();
+                    break;
+                case GENERARMENSUAL:
+                    vistaInformeMensual = new VistaInformeMensual();
+                    Controlador controladorImplInformeMensual = factory.crearControlador(8,vistaInformeMensual,this.MODELO);
+                    vistaInformeMensual.setControlador(controladorImplInformeMensual);
+                    vistaInformeMensual.iniciaVista();
                     break;
             }
         } catch (Exception ex) {

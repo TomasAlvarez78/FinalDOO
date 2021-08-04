@@ -7,6 +7,7 @@ package vista;
 
 import clases.FichaMecanica;
 import controlador.Controlador;
+import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modeloFactoryPersona.Cliente;
@@ -35,11 +36,34 @@ public class VistaInformeMensual extends javax.swing.JFrame implements InterfazV
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxSeguros = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        btnGenerar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setText("Compania de Seguro:");
+
+        jLabel2.setText("Fecha:");
+
+        btnGenerar.setText("Generar");
+        btnGenerar.setActionCommand(InterfazVista.Operacion.GENERARMENSUAL.toString());
+
+        jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -47,9 +71,21 @@ public class VistaInformeMensual extends javax.swing.JFrame implements InterfazV
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, 0, 231, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbxSeguros, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(datePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGenerar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -58,12 +94,27 @@ public class VistaInformeMensual extends javax.swing.JFrame implements InterfazV
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(271, Short.MAX_VALUE))
+                    .addComponent(cbxSeguros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGenerar)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,17 +153,21 @@ public class VistaInformeMensual extends javax.swing.JFrame implements InterfazV
 
     @Override
     public void setControlador(Controlador c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.btnGenerar.addActionListener(c);
+        c.actionPerformed(new ActionEvent(this, 0, InterfazVista.Operacion.CARGAR.toString()));
+        cbxSeguros.setSelectedIndex(-1);
     }
 
     @Override
     public void iniciaVista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     @Override
     public void cerrarVista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.setVisible(false);
+        this.dispose();
     }
 
     @Override
@@ -122,7 +177,11 @@ public class VistaInformeMensual extends javax.swing.JFrame implements InterfazV
 
     @Override
     public int getEspecialidadId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            return this.cbxSeguros.getSelectedIndex();
+        }catch(NumberFormatException ex){
+            return -1;
+        }
     }
 
     @Override
@@ -132,7 +191,7 @@ public class VistaInformeMensual extends javax.swing.JFrame implements InterfazV
 
     @Override
     public String getDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.datePicker1.getDateStringOrEmptyString();
     }
 
     @Override
@@ -142,7 +201,15 @@ public class VistaInformeMensual extends javax.swing.JFrame implements InterfazV
 
     @Override
     public int getEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            if (this.cbxSeguros.getSelectedIndex() > -1 && this.datePicker1.getText().length() > 2){
+               return 1;
+            }else{
+                return 0;
+            }
+        }catch(Exception ex){
+            return 0;
+        }
     }
 
     @Override
@@ -182,12 +249,22 @@ public class VistaInformeMensual extends javax.swing.JFrame implements InterfazV
 
     @Override
     public void cargarSeguros(List<String> lista) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String temp = "";
+        int contador = 1;
+        for (String linea : lista) {
+            temp += "Trabajo numero " + contador + "\n\n";
+            temp += linea + "\n====================================\n";
+            contador++;
+        }
+        
+        this.txtArea.setText(temp);
     }
 
     @Override
     public void cargarLista(List<String> lista) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        lista.forEach(seguro -> {
+            cbxSeguros.addItem(seguro);
+        });
     }
 
     @Override
@@ -201,7 +278,13 @@ public class VistaInformeMensual extends javax.swing.JFrame implements InterfazV
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnGenerar;
+    private javax.swing.JComboBox<String> cbxSeguros;
+    private com.github.lgooddatepicker.components.DatePicker datePicker1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
 }

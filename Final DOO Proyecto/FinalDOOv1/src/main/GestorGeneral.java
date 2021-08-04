@@ -190,4 +190,8 @@ public class GestorGeneral {
         return fichaMecanicaDao.infDiario(especialidadId, fecha);
     }
     
+    public List <String> infMensual(int seguroId, String fecha){
+        return fichaMecanicaDao.infMensual(seguroId, fecha);
+    }
+    
 }

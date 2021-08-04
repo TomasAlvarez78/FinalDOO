@@ -23,6 +23,7 @@ public interface FichaMecanicaDAO {
     boolean actFicha(FichaMecanica ficha, int fichaId);
     
     List <String> infDiario(int especialidadId, String fecha);
+    List <String> infMensual(int seguroId, String fecha);
     
     boolean agregarFicha(int idTurno);
     
