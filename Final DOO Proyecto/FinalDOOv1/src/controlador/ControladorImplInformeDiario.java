@@ -48,6 +48,10 @@ public class ControladorImplInformeDiario extends Controlador{
                         especialidad++;
                         String fecha = vistaInformeDiario.getDate();
                         List <String> infDiario = objeto.infDiario(especialidad, fecha);
+                        if(infDiario.isEmpty()){
+                            vistaInformeDiario.imprimeResultado("No se encuentrar registros en esa fecha");
+                            break;
+                        }
                         vistaInformeDiario.cargarSeguros(infDiario);
                     }else{
                         vistaInformeDiario.imprimeResultado("Ingreso un dato incorrectamente");

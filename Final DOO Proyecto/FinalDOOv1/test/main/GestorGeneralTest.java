@@ -5,13 +5,11 @@
  */
 package main;
 
-import clases.FichaMecanica;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import modeloFactoryPersona.Cliente;
 import modeloFactoryPersona.Empleado;
 import modeloFactoryPersona.Oficinista;
 import org.junit.After;
@@ -52,8 +50,8 @@ public class GestorGeneralTest {
     
     @Before
     public void setUp() {
-        empleadoDao= mock(EmpleadoDAO.class);
-        segurosDao= mock(SegurosDAO.class);
+        empleadoDao = mock(EmpleadoDAO.class);
+        segurosDao = mock(SegurosDAO.class);
         turnoDao = mock(TurnoDAO.class);
         gestorGeneral = new GestorGeneral();
     }
@@ -81,12 +79,11 @@ public class GestorGeneralTest {
             System.out.println("Error: " + ex);
         }
         
-        Empleado emp = gestorGeneral.buscarEmpleado(2039745);
+        Empleado emp = gestorGeneral.buscarEmpleado(123);
         
         assertTrue(emp instanceof Empleado);
         assertEquals(emp.getNombre(), "Nombre");
     }
-    
     
     @Test
     public void buscarEmpleado_NotFound() 
@@ -100,7 +97,7 @@ public class GestorGeneralTest {
             System.out.println("Error: " + ex);
         }
         
-        Empleado emp = gestorGeneral.buscarEmpleado(2039745);
+        Empleado emp = gestorGeneral.buscarEmpleado(123);
         
         assertNull(emp);
     }

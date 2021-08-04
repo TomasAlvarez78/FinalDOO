@@ -1,5 +1,7 @@
 package "Factory Method Controlador"{
-		abstract class ControladorFactoryMethod
+		abstract class ControladorFactoryMethod{
+			+ crearControlador(int id)
+		}
 		class ControladorFactory
 }
 

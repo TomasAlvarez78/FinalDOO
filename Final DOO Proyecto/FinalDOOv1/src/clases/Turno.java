@@ -16,7 +16,7 @@ public class Turno {
     Cliente cliente;
     String vehiculo;
     boolean personalTelefonica;
-    boolean estado;
+    int estado;
     
     public Date getDiayHora() {
         return diayHora;
@@ -58,11 +58,11 @@ public class Turno {
         this.personalTelefonica = personalTelefonica;
     }
 
-    public boolean isEstado() {
+    public int isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
     

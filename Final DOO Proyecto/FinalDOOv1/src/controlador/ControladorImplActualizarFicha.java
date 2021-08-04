@@ -99,7 +99,7 @@ public class ControladorImplActualizarFicha extends Controlador {
                             fichaMecanica.setGastos(temp2);
                             boolean estado2 = objeto.actFicha(fichaMecanica,fichaId);
                             if(estado2 == true){
-                                if(fichaMecanica.getFechayHora().length() > 3){
+                                if(fichaMecanica.getFechayHora() != null){
                                     objeto.cambiarEstado(turnoId, 7);
                                 }
                                 vistaFichaMecanica.imprimeResultado("Guardado correctamente");

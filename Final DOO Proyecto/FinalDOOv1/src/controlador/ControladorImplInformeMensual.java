@@ -52,6 +52,10 @@ public class ControladorImplInformeMensual extends Controlador{
                             for(String linea : infMensual){
                                 System.out.println(linea);
                             }
+                            if(infMensual.isEmpty()){
+                                vistaInformeMensual.imprimeResultado("No se encontro trabajos completos en ese mes");
+                                break;
+                            }
                             vistaInformeMensual.cargarSeguros(infMensual);
                         }else{
                             vistaInformeMensual.imprimeResultado("No se encontro trabajos completos en ese mes");

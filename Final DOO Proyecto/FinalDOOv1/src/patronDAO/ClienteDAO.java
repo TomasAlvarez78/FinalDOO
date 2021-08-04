@@ -29,12 +29,4 @@ public interface ClienteDAO {
     
     void cerrarConexion();
     
-    /*
-        protected String nombre;
-        protected String apellido;
-        protected Date fechaNacimiento;
-        protected int dni;
-        protected String sexo;
-    */
-    
 }

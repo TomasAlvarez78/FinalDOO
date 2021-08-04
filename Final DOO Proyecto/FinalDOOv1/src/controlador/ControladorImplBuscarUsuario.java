@@ -23,11 +23,13 @@ public class ControladorImplBuscarUsuario extends Controlador {
     
     private Cliente cliente;
     ControladorFactory factory;
+    GestorGeneral objeto;
     
     public ControladorImplBuscarUsuario(InterfazVista vista, Modelo modelo) {
         factory = new ControladorFactory();
         vistaTurno = vista;
         MODELO = modelo;
+        objeto = new GestorGeneral();
     }
  
 
@@ -37,11 +39,8 @@ public class ControladorImplBuscarUsuario extends Controlador {
             switch (InterfazVista.Operacion.valueOf(e.getActionCommand())) {
                 case BUSCARUSUARIO:
                     int dni = vistaTurno.getDNI();
-                    
-                    GestorGeneral objeto = new GestorGeneral();
                     cliente = objeto.buscarCliente(dni);
                     vistaTurno.updateDatos(cliente);
-                    
                     break;
                 case SIGUIENTE:
                     vistaRegTurno = new VistaRegistroTurno();

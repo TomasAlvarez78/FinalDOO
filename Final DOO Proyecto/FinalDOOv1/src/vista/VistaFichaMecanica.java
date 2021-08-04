@@ -67,6 +67,7 @@ public class VistaFichaMecanica extends javax.swing.JFrame implements InterfazVi
         jLabel8.setText("jLabel8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ficha Mecanica");
         setResizable(false);
 
         jLabel1.setText("N de Ficha:");
