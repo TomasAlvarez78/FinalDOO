@@ -2,9 +2,6 @@
 package Empresa{
 
     'hide empty methods
-    Class Empresa{
-        -nombre_empresa: string
-    }
 
     Abstract Class Persona{
         -nombre: String
@@ -19,19 +16,7 @@ package Empresa{
         -datosEmpleado: Persona
         -legajo:int
     }
-
-    Class Vehiculo {
-        -nombre: String
-        -marca: String
-        -patente: String
-    }
     
-
-    Class CompaniaSeguros{
-        -razónSocial: string
-        -cuit: int
-    }
-
     Class Mecanico{
         -datosMecanico: Empleado
         -especialidad: Especialidad
@@ -41,11 +26,6 @@ package Empresa{
     Class Oficinista{
         -datosOficinista: Empleado
      } 
-
-    Class Especialidad{
-        -id: int
-        -nombre: String
-    }
 
     'Hija de Persona
     Class Cliente{
@@ -62,27 +42,16 @@ package Empresa{
        -cliente: Cliente
        -vehiculo: Vehiculo
        -estado: bool
-       + revisarAgenda()
-       + asignarTurno()
     }
-
-
-    Class Agenda{
-       '-mes:int
-       -anio:int
-       -mecanico:Mecanico
-       -turnosTotales: List<Turno>
-    }
-
 
     Class FichaMecanica{
         -mecanico: Mecanico
         -cliente: Cliente
         -descripcion: string
         -dia: date
+        -gastos: string
         -tiempoEmpleado:int
         -conformidad: bool
-        
     }
     
     'Relaciones
@@ -91,21 +60,16 @@ package Empresa{
 
     Persona "1" --> "1-n" Turno
     
-    
-    Cliente "1" -->"1-n" Vehiculo
     Cliente --|> Persona
     
     Empleado --> Empleado
     Empleado --|> Persona
     
-    Mecanico " 1" --> " 1-n" Especialidad
     Mecanico --|> Empleado
 	Oficinista -right-|> Empleado
     
     FichaMecanica "1" --> "1" Mecanico
     FichaMecanica "1" --> "1" Cliente
-    
-    Agenda "1" *-- "0-n" Turno
 
 }
 @enduml

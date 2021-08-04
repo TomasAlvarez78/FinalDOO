@@ -1,0 +1,79 @@
+@startuml Diagrama de Base de Datos
+hide empty methods
+package "Base de datos" <<Database>>{
+
+	class agendaTable{
+		- id : int PK
+		- anio : int
+		- mecanicoId : int FK
+	}
+
+	class clienteTable{
+		- id : int PK
+		- dni : int
+		- nombre : varchar
+		- apellido : varchar
+		- sexo : varchar
+		- fechaNacimiento: Date
+		- auto: varchar
+		- companiaSeguroCuit: int FK
+	}
+
+	class companiaSeguroTable{
+		- id : int PK
+		- nombre : varchar
+	}
+
+	class empleadoTable{
+		- id : int PK
+		- dni : int
+		- nombre : varchar
+		- apellido : varchar
+		- sexo : varchar
+		- fechaNacimiento : Date
+		- tipoEmpleado : int
+		- especialidadId : int FK
+		- turno : varchar
+	}
+
+	class especialidad{
+		- id : int PK
+		- nombreEsp : varchar
+	}
+
+	class estadoTable{
+		- id : int PK
+		- estadoNom : varchar
+	}
+
+	class turnoTable{
+		- id : int PK
+		- fecha : Date
+		- agendaId : int FK
+		- clienteId : int Fk
+		- vehiculo : varchar
+		- estadoId : int FK
+		- telefonico : int
+	}
+
+	class fichaMecanicaTable{
+		- id : int PK
+		- descripcion : Text
+		- fechaSalida : varchar
+		- tiempoEmpleado: int
+		- gastos: Text
+		- conformidad: int
+		- idTurno: int FK
+	}
+
+	fichaMecanicaTable --> turnoTable
+	turnoTable --> estadoTable
+	turnoTable --> agendaTable
+	turnoTable --> clienteTable
+	agendaTable --> empleadoTable
+	empleadoTable --> especialidad	
+	clienteTable --> companiaSeguroTable
+}
+
+
+@enduml
