@@ -30,8 +30,8 @@ public interface InterfazVista {
     String getTicket();
     int getEstado();
     String getString();
-    
     Cliente getCliente();
+    
     void imprimeResultado(String resultado);
     void imprimeError(Exception e);
     void updateDatos(Cliente c);

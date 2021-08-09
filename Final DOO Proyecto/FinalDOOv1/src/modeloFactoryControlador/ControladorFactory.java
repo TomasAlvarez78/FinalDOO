@@ -23,7 +23,7 @@ import vista.InterfazVista;
  * @author cirkuit
  */
 public class ControladorFactory extends ControladorFactoryMethod{
-
+    //Reflection
     @Override
     public Controlador crearControlador(int idCreacion,InterfazVista vista,Modelo modelo) {
         switch(idCreacion){
